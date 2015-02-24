@@ -62,8 +62,8 @@ customerApp.controller('CustomerListCtrl', function($scope, $http) {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        data: $.param({user_app_id:'app_id', service_app_name:'CustomerDataReadWrite',
-        request_string: 'SET:first='+$scope.customerUpdate.first+',last='+$scope.customerUpdate.last+
+        data: $.param({user_app_id:'app_id', service_app_name:'Customer',
+        request_string: 'update first='+$scope.customerUpdate.first+',last='+$scope.customerUpdate.last+
         ',email='+$scope.customerUpdate.email+',company_name='+$scope.customerUpdate.company_name+
         ',department_name='+$scope.customerUpdate.department_name+',work_phone='+$scope.customerUpdate.work_phone+
         ',mobile_phone='+$scope.customerUpdate.mobile_phone+',shipment_address='+$scope.customerUpdate.shipment_address+
@@ -86,8 +86,8 @@ customerApp.controller('CustomerListCtrl', function($scope, $http) {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        data: $.param({user_app_id:'app_id', service_app_name:'CustomerDataReadWrite',
-        request_string: 'SET:first='+$scope.customerUpdate.first+',last='+$scope.customerUpdate.last+
+        data: $.param({user_app_id:'app_id', service_app_name:'Customer',
+        request_string: 'add first='+$scope.customerUpdate.first+',last='+$scope.customerUpdate.last+
         ',email='+$scope.customerUpdate.email+',company_name='+$scope.customerUpdate.company_name+
         ',department_name='+$scope.customerUpdate.department_name+',work_phone='+$scope.customerUpdate.work_phone+
         ',mobile_phone='+$scope.customerUpdate.mobile_phone+',shipment_address='+$scope.customerUpdate.shipment_address+
@@ -110,8 +110,8 @@ customerApp.controller('CustomerListCtrl', function($scope, $http) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      data: $.param({user_app_id:'app_id', service_app_name:'CustomerDataReadWrite',
-      request_string: 'DEL:id==['+$scope.customer.id+'];'})
+      data: $.param({user_app_id:'app_id', service_app_name:'Customer',
+      request_string: 'delete on id==['+$scope.customer.id+'];'})
     }
     $http(req).success(function(data) {
       var index = $scope.customers.indexOf($scope.customer)
