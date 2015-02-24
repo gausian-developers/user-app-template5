@@ -10,7 +10,7 @@ customerApp.controller('CustomerListCtrl', function($scope, $http) {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
-    data: $.param({user_app_id:'app_id', service_app_name:'CustomerDataReadWrite', request_string: "GET:;"})
+    data: $.param({user_app_id:'app_id', service_app_name:'Customer', request_string: "get"})
   };
 
 
