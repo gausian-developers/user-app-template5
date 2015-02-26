@@ -1,9 +1,9 @@
 'use strict';
 
 
-var customerApp = angular.module('customerApp',[]);
+var customerApp = angular.module('customerApp',['ngRoute'])
+.controller('CustomerListCtrl', function($scope, $http, $route, $routeParams) {
 
-customerApp.controller('CustomerListCtrl', function($scope, $http) {
   var req = {
     method: 'POST',
     url: 'http://asa.gausian.com',
@@ -13,11 +13,40 @@ customerApp.controller('CustomerListCtrl', function($scope, $http) {
     data: $.param({user_app_id:'app_id', service_app_name:'Customer', request_string: "get"})
   };
 
-
   $http(req).success(function(data) {
-    console.log('done');
-    console.log(data.response);
+    // console.log('done');
+    // console.log(data.response);
     $scope.customers = angular.fromJson(data.response);
+    console.log($scope.customers);
+    for(var i=0; i<$scope.customers.length; i++){
+      var customer = $scope.customers[i];
+      if(customer.id === $scope.userId){
+        $scope.customer=customer;
+        $("#editForm").hide();
+        $("#informationForm").hide();
+        $("#customerInformation").show();
+        $scope.expand_shipment_addr=false;
+        $scope.expand_mail_addr=false;
+      }
+    }
+  });
+
+
+  $scope.$on("$routeChangeSuccess", function($currentRoute, $previousRoute) {
+    console.log($route.current.action);
+    $scope.userId = ($routeParams.userId || '');
+    console.log($scope.userId);
+    for(var i=0; i<$scope.customers.length; i++){
+      var customer = $scope.customers[i];
+      if(customer.id === $scope.userId){
+        $scope.customer=customer;
+        $("#editForm").hide();
+        $("#informationForm").hide();
+        $("#customerInformation").show();
+        $scope.expand_shipment_addr=false;
+        $scope.expand_mail_addr=false;
+      }
+    }
   });
 
   $scope.showInfo = function(customer, index) {
@@ -120,5 +149,11 @@ customerApp.controller('CustomerListCtrl', function($scope, $http) {
       $("#editForm").hide();
     });
   };
+})
 
+.config(function ($routeProvider){
+  $routeProvider.
+  when('/open/:userId',{
+    action: 'open'
+  })
 });
