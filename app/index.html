@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
-<body ng-controller="CustomerListCtrl">
+<body ng-controller="CustomerListCtrl" id="CustomerCtrl">
 <div class="whole_container">
 
   <div class="Top_bar">
@@ -57,7 +57,7 @@
 
   <div class="list_container">
     <div ng-repeat="customer in customers | filter:query | orderBy:orderProp">
-      <div class="list_customers" ng-click="showInfo(customer, $index)" ng-class="{list_selected: $index == selected}">
+      <div class="list_customers" ng-click="showInfo(customer)" ng-class="{list_selected: customer.id == selected}">
         <div class="list_customers_name" ng-bind-template="{{customer.first}} {{customer.last}}"></div>
         <div class="list_customers_company" ng-bind-template="{{customer.company_name}}    {{customer.department_name}}"></div>
       </div>
@@ -68,6 +68,8 @@
     <div class="detail_name">
       {{customer.first + " " + customer.last}}
     </div>
+
+    <div>{{customer}}</div>
     <div class="detail_company_name">
       {{customer.company_name + " " + customer.department_name}}
     </div>
@@ -251,12 +253,12 @@
       <div class="APP_hyperlink_app_image"></div>
       <div class="APP_hyperlink_app_name">Quotes</div>
     </div>
-    <div class="APP_hyperlink_onelink">
+    <div class="APP_hyperlink_onelink" ng-click="openCustomer(customer)">
       <div class="APP_hyperlink_app_edge"></div>
       <div class="APP_hyperlink_app_image"></div>
-      <div class="APP_hyperlink_app_name">Sales</div>
+      <div class="APP_hyperlink_app_name">Customers</div>
     </div>
-    <div class="APP_hyperlink_onelink">
+    <div class="APP_hyperlink_onelink" ng-click="addLink()">
       <div class="APP_hyperlink_app_edge"></div>
       <div class="APP_hyperlink_app_image">+</div>
       <div class="APP_hyperlink_app_name">New Link</div>

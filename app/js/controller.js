@@ -4,6 +4,7 @@
 var customerApp = angular.module('customerApp',['ngRoute'])
 .controller('CustomerListCtrl', function($scope, $http, $route, $routeParams) {
 
+  $scope.data;
   var req = {
     method: 'POST',
     url: 'http://asa.gausian.com',
@@ -21,42 +22,32 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     for(var i=0; i<$scope.customers.length; i++){
       var customer = $scope.customers[i];
       if(customer.id === $scope.userId){
-        $scope.customer=customer;
-        $("#editForm").hide();
-        $("#informationForm").hide();
-        $("#customerInformation").show();
-        $scope.expand_shipment_addr=false;
-        $scope.expand_mail_addr=false;
+        $scope.showInfo(customer);
       }
     }
   });
-
 
   $scope.$on("$routeChangeSuccess", function($currentRoute, $previousRoute) {
-    console.log($route.current.action);
     $scope.userId = ($routeParams.userId || '');
-    console.log($scope.userId);
-    for(var i=0; i<$scope.customers.length; i++){
-      var customer = $scope.customers[i];
-      if(customer.id === $scope.userId){
-        $scope.customer=customer;
-        $("#editForm").hide();
-        $("#informationForm").hide();
-        $("#customerInformation").show();
-        $scope.expand_shipment_addr=false;
-        $scope.expand_mail_addr=false;
+    if($scope.customers != null){
+      for(var i=0; i<$scope.customers.length; i++){
+        var customer = $scope.customers[i];
+        if(customer.id === $scope.userId){
+          $scope.showInfo(customer);
+        }
       }
     }
   });
 
-  $scope.showInfo = function(customer, index) {
+  $scope.showInfo = function(customer) {
       $scope.customer=customer;
+      console.log($scope.customer);
       $("#editForm").hide();
       $("#informationForm").hide();
       $("#customerInformation").show();
       $scope.expand_shipment_addr=false;
       $scope.expand_mail_addr=false;
-      $scope.selected = index;
+      $scope.selected = customer.id;
   }
   $scope.orderProp = 'customer_id';
 
@@ -149,6 +140,44 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       $("#editForm").hide();
     });
   };
+
+  $scope.openCustomer = function(customer) {
+    if(customer != null){
+      var payload = {
+        op: 'openApp',
+        originAppId: 'customerApp',
+        value: customer.id
+      };
+    }
+    else
+      var payload = {
+        op: 'openApp',
+        originAppId: 'customerApp',
+      };
+    console.log(payload);
+    parent.postMessage(payload, "http://localhost/test.html");
+  };
+
+  $scope.addLink = function() {
+    var payload = {
+      op: 'addLink',
+      originAppId: 'customerApp'
+    };
+    parent.postMessage(payload, "http://localhost/test.html");
+    // console.log(payload);
+  };
+
+  $scope.processMessage = function(data){
+    console.log(data);
+    if(data.op === 'openApp'){
+      for(var i=0; i<$scope.customers.length; i++){
+        var customer = $scope.customers[i];
+        if(customer.id === data.value){
+          $scope.showInfo(customer);
+        }
+      }
+    }
+  };
 })
 
 .config(function ($routeProvider){
@@ -157,3 +186,10 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     action: 'open'
   })
 });
+
+
+function receiveMessage(event) {
+  var scope = angular.element(document.getElementById('CustomerCtrl')).scope();
+  scope.$apply(scope.processMessage(event.data));
+}
+window.addEventListener("message", receiveMessage, false);
