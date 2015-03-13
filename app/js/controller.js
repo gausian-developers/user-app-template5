@@ -177,7 +177,8 @@ var customerApp = angular.module('customerApp',['ngRoute'])
         }
       };
     console.log(payload);
-    parent.postMessage(payload, "http://localhost:4200/");
+    var targetUrl = (window.location != window.parent.location) ? document.referrer: document.location;
+    parent.postMessage(payload, targetUrl);
   };
 
   $scope.addLink = function() {
@@ -185,8 +186,8 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       op: 'addLink',
       originAppId: 'customerApp'
     };
-    debugger;
-    parent.postMessage(payload, "http://localhost:4200/");
+    var targetUrl = (window.location != window.parent.location) ? document.referrer: document.location;
+    parent.postMessage(payload, targetUrl);
     // console.log(payload);
   };
 
@@ -194,7 +195,6 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     console.log(data);
     if(data.op === 'bootstrap'){
       var host = data.host;
-      debugger;
     } else if (data.op === 'openApp'){
       for(var i=0; i<$scope.customers.length; i++){
         var customer = $scope.customers[i];
