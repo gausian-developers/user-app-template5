@@ -153,9 +153,31 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       var payload = {
         op: 'openApp',
         originAppId: 'customerApp',
+        targetAppId: 'Quotes',
+        data: {
+          active: "true",
+          add_colume: "testing",
+          company_name: "ATT",
+          email: "james@gmail.com",
+          first: "James",
+          id: "1",
+          last: "Smith",
+          mail_address: "456 Burton Drive",
+          mail_city: "Santa Clara",
+          mail_country: "US",
+          mail_state: "CA",
+          mail_zip: "95867",
+          mobile_phone: "465-089-1725",
+          shipment_address: "456 Burton Drive",
+          shipment_city: "Santa Clara",
+          shipment_country: "US",
+          shipment_state: "CA",
+          shipment_zip: "95867",
+          work_phone: "876-564-0937"
+        }
       };
     console.log(payload);
-    parent.postMessage(payload, "http://localhost/test.html");
+    parent.postMessage(payload, "http://localhost:4200/");
   };
 
   $scope.addLink = function() {
@@ -163,19 +185,27 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       op: 'addLink',
       originAppId: 'customerApp'
     };
-    parent.postMessage(payload, "http://localhost/test.html");
+    debugger;
+    parent.postMessage(payload, "http://localhost:4200/");
     // console.log(payload);
   };
 
   $scope.processMessage = function(data){
     console.log(data);
-    if(data.op === 'openApp'){
+    if(data.op === 'bootstrap'){
+      var host = data.host;
+      debugger;
+    } else if (data.op === 'openApp'){
       for(var i=0; i<$scope.customers.length; i++){
         var customer = $scope.customers[i];
-        if(customer.id === data.value){
-          $scope.showInfo(customer);
+        if(customer.id.toString() === data.value.id){
+          $scope.showInfo(data.value);
         }
       }
+    } else if (data.op === 'selectLink') {
+      var targetApp = data.targetApp;
+      //TBD: add icon to app list
+      console.log(targetApp);
     }
   };
 })
