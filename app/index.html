@@ -255,16 +255,14 @@
     </form>
   </div>
   <div class="hyperlink_container">
-    <div class="APP_hyperlink_onelink">
-      <div class="APP_hyperlink_app_edge"></div>
-      <div class="APP_hyperlink_app_image"></div>
-      <div class="APP_hyperlink_app_name">Quotes</div>
+    <div ng-repeat="app in apps | filter:query | orderBy:orderProp">
+      <div class="APP_hyperlink_onelink" ng-click="openCustomer(customer)">
+        <div class="APP_hyperlink_app_edge"></div>
+        <div class="APP_hyperlink_app_image"></div>
+        <div class="APP_hyperlink_app_name"> {{app.name}}</div>
+      </div>
     </div>
-    <div class="APP_hyperlink_onelink" ng-click="openCustomer(customer)">
-      <div class="APP_hyperlink_app_edge"></div>
-      <div class="APP_hyperlink_app_image"></div>
-      <div class="APP_hyperlink_app_name">Customers</div>
-    </div>
+
     <div class="APP_hyperlink_onelink" ng-click="addLink()">
       <div class="APP_hyperlink_app_edge"></div>
       <div class="APP_hyperlink_app_image">+</div>

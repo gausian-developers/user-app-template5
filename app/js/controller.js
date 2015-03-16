@@ -5,6 +5,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
 .controller('CustomerListCtrl', function($scope, $http, $route, $routeParams) {
 
   $scope.data;
+  $scope.apps = [];
   var req = {
     method: 'POST',
     url: 'http://asa.gausian.com',
@@ -204,6 +205,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       }
     } else if (data.op === 'selectLink') {
       var targetApp = data.targetApp;
+      $scope.apps.push(targetApp);
       //TBD: add icon to app list
       console.log(targetApp);
     }
