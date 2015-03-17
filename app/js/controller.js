@@ -43,6 +43,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
   $scope.showInfo = function(customer) {
       $scope.customer=customer;
       console.log($scope.customer);
+      $("#welcome").hide();
       $("#editForm").hide();
       $("#informationForm").hide();
       $("#customerInformation").show();
@@ -53,6 +54,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
   $scope.orderProp = 'customer_id';
 
   $scope.showForm = function(flag) {
+    $("#welcome").hide();
     $("#customerInformation").hide();
     if(flag === false){
       $scope.customerUpdate=null;

@@ -71,12 +71,11 @@
     </div>
   </div>
 
-  <div class="detail_container" hidden id="customerInformation">
+  <div class="detail_container fadeIn fadeIn-20ms" hidden id="customerInformation">
     <div class="detail_name">
       {{customer.first + " " + customer.last}}
     </div>
-
-    <div>{{customer}}</div>
+    <div class="edit_customer" id="editCustomer" ng-click="showForm(true)">Edit</div>
     <div class="detail_company_name">
       {{customer.company_name + " " + customer.department_name}}
     </div>
@@ -112,11 +111,10 @@
       customer.mail_country
       }}
     </div>
-    <div class="edit_customer" id="editCustomer" ng-click="showForm(true)">Edit this customer</div>
   </div>
 
 
-  <div class="detail_container_2" hidden id="editForm">
+  <div class="detail_container_2 fadeIn fadeIn-20ms" hidden id="editForm">
     <div class="detail_page_title">Edit Customer Info</div>
     <form class="infoForm">
       <div class="item_name_container">
@@ -182,7 +180,7 @@
     </form>
   </div>
 
-  <div class="detail_container_2" hidden id="informationForm">
+  <div class="detail_container_2 fadeIn fadeIn-20ms" hidden id="informationForm">
     <div class="detail_page_title">Add New Customer</div>
     <form class="infoForm">
       <div class="item_name_container">
