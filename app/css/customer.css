@@ -501,7 +501,7 @@ width: 50px;
 height: 53px;
 background: rgb(0, 0, 0);
 border-radius: 12px;
-box-shadow: 0 2px 6px black;
+box-shadow: 0 0px 6px black;
 }
 .APP_hyperlink_app_image {
 position: absolute;
