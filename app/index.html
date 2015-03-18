@@ -76,39 +76,48 @@
       {{customer.first + " " + customer.last}}
     </div>
     <div class="edit_customer" id="editCustomer" ng-click="showForm(true)">Edit</div>
+    <div class="decoration_seperator"></div>
     <div class="detail_company_name">
       {{customer.company_name + " " + customer.department_name}}
     </div>
     <div class="details">
-      <span style="color: rgb(130,130,130);">Email: </span>
+      <img class="details_img" src="img/id_blue.png"/>
       {{customer.email}}
     </div>
     <div class="details">
-      <span style="color: rgb(130,130,130);">Tel: </span>
-      {{customer.work_phone}}
+      <img class="details_img" src="img/email_blue.png"/>
+      {{customer.email}}
     </div>
     <div class="details">
-      <span style="color: rgb(130,130,130);">Mobile: </span>
+      <img class="details_img" src="img/home_blue.png"/>
+      {{customer.email}}
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/mobile_blue.png"/>
       {{customer.mobile_phone}}
     </div>
     <div class="details">
-      <span style="color: rgb(130,130,130);">Shipment Address: <br/></span>
-      {{
-      customer.shipment_address + ", " +
-      customer.shipment_city + ", " +
-      customer.shipment_state + ", " +
-      customer.shipment_zip + ", " +
-      customer.shipment_country
-      }}
+      <img class="details_img" src="img/tele_blue.png"/>
+      {{customer.work_phone}}
     </div>
     <div class="details">
-      <span style="color: rgb(150,150,150);">Mail Address: <br/></span>
+      <img class="details_img" src="img/mail_blue.png"/>
       {{
       customer.mail_address + ", " +
       customer.mail_city + ", " +
       customer.mail_state + ", " +
       customer.mail_zip + ", " +
       customer.mail_country
+      }}
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/ship_blue.png"/>
+      {{
+      customer.shipment_address + ", " +
+      customer.shipment_city + ", " +
+      customer.shipment_state + ", " +
+      customer.shipment_zip + ", " +
+      customer.shipment_country
       }}
     </div>
   </div>
