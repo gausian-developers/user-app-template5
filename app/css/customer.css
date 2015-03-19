@@ -312,6 +312,9 @@ width: 24px;
 height: 24px;
 float: left;
 }
+.details_img:hover {
+cursor: pointer;
+}
 .details_content_text {
 position: relative;
 float: left;
