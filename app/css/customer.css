@@ -132,7 +132,7 @@ top: 0px;
 left: 0px;
 width: 230px;
 height: 100%;
-background: rgb(100, 100, 100);
+background: rgb(120, 120, 120);
 line-height: 20px;
 padding-top: 44px;
 z-index: 1;	
@@ -180,7 +180,7 @@ text-align: left;
 padding-left: 5px;
 font-family: arial;
 font-size: 14px;
-color: rgb(179, 179, 179);
+color: rgb(190, 190, 190);
 margin-left: 0px;
 }
 .detail_page_title {
@@ -489,7 +489,7 @@ right: 0px;
 width: 92px;
 height: 100%;
 z-index: 2;
-background-color: rgb(100, 100, 100);
+background-color: rgb(120, 120, 120);
 box-shadow: 0 0 10px black;
 }
 .APP_hyperlink {
@@ -510,7 +510,7 @@ cursor: pointer;
 }
 .APP_hyperlink_onelink {
 position: relative;
-top: 45px;
+top: 53px;
 left: 0px;
 margin-left: 0;
 margin-right: 0;
