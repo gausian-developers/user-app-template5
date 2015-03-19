@@ -82,35 +82,35 @@
     </div>
     <div class="details">
       <img class="details_img" src="img/id_blue.png" ng-show="customer.email != null"/>
-      <img class="details_img" src="img/id_gray.png" ng-show="customer.email == null"/>
+      <img class="no_info_img" src="img/id_gray.png" ng-show="customer.email == null"/>
       <div class="details_content_text" ng-show="customer.email != null">
       {{customer.email}}
       </div>
     </div>
     <div class="details">
       <img class="details_img" src="img/email_blue.png" ng-show="customer.email != null"/>
-      <img class="details_img" src="img/email_gray.png" ng-show="customer.email == null"/>
+      <img class="no_info_img" src="img/email_gray.png" ng-show="customer.email == null"/>
       <div class="details_content_text" ng-show="customer.email != null">
       {{customer.email}}
       </div>
     </div>
     <div class="details">
       <img class="details_img" src="img/home_blue.png" ng-show="customer.email != null"/>
-      <img class="details_img" src="img/home_gray.png" ng-show="customer.email == null"/>
+      <img class="no_info_img" src="img/home_gray.png" ng-show="customer.email == null"/>
       <div class="details_content_text" ng-show="customer.email != null">
       {{customer.email}}
       </div>
     </div>
     <div class="details">
       <img class="details_img" src="img/mobile_blue.png" ng-show="customer.mobile_phone != null"/>
-      <img class="details_img" src="img/mobile_gray.png" ng-show="customer.mobile_phone == null"/>
+      <img class="no_info_img" src="img/mobile_gray.png" ng-show="customer.mobile_phone == null"/>
       <div class="details_content_text" ng-show="customer.mobile_phone != null">
       {{customer.mobile_phone}}
       </div>
     </div>
     <div class="details">
       <img class="details_img" src="img/tele_blue.png" ng-show="customer.work_phone != null"/>
-      <img class="details_img" src="img/tele_gray.png" ng-show="customer.work_phone == null"/>
+      <img class="no_info_img" src="img/tele_gray.png" ng-show="customer.work_phone == null"/>
       <div class="details_content_text" ng-show="customer.work_phone != null">
       {{customer.work_phone}}
       </div>
@@ -119,7 +119,7 @@
       <img class="details_img" src="img/mail_blue.png" 
       ng-show="customer.mail_address != null || customer.mail_city != null || customer.mail_state != null || customer.mail_country != null || customer.mail_zip != null"
       />
-      <img class="details_img" src="img/mail_gray.png" 
+      <img class="no_info_img" src="img/mail_gray.png" 
       ng-show="customer.mail_address == null && customer.mail_city == null && customer.mail_state == null && customer.mail_country == null && customer.mail_zip == null"
       />
       <div class="details_content_text" ng-show="customer.mail_address != null">
@@ -142,7 +142,7 @@
       <img class="details_img" src="img/ship_blue.png" 
       ng-show="customer.shipment_address != null || customer.shipment_city != null || customer.shipment_state != null || customer.shipment_country != null || customer.shipment_zip != null"
       />
-      <img class="details_img" src="img/ship_gray.png" 
+      <img class="no_info_img" src="img/ship_gray.png" 
       ng-show="customer.shipment_address == null && customer.shipment_city == null && customer.shipment_state == null && customer.shipment_country == null && customer.shipment_zip == null"
       />
       <div class="details_content_text" ng-show="customer.shipment_address != null">
