@@ -132,7 +132,7 @@ top: 0px;
 left: 0px;
 width: 230px;
 height: 100%;
-background: rgb(85, 85, 85);
+background: rgb(100, 100, 100);
 line-height: 20px;
 padding-top: 44px;
 z-index: 1;	
@@ -180,7 +180,7 @@ text-align: left;
 padding-left: 5px;
 font-family: arial;
 font-size: 14px;
-color: rgb(164, 164, 164);
+color: rgb(179, 179, 179);
 margin-left: 0px;
 }
 .detail_page_title {
@@ -295,6 +295,7 @@ clear: left;
 .details {
 font-family: arial;
 font-size: 16px;
+height: 34px;
 line-height: 24px;
 padding-bottom: 8px;
 padding-left: 0px;
@@ -307,9 +308,14 @@ position: relative;
 clear: left;
 top: -3px;
 left: 0px;
-padding-right: 5px;
-width: 29px;
+width: 24px;
 height: 24px;
+float: left;
+}
+.details_content_text {
+position: relative;
+float: left;
+left: 8px;
 }
 ::-webkit-input-placeholder {
    color: rgb(80,80,80);
@@ -480,13 +486,13 @@ right: 0px;
 width: 92px;
 height: 100%;
 z-index: 2;
-background-color: rgb(85, 85, 85);
+background-color: rgb(100, 100, 100);
 box-shadow: 0 0 10px black;
 }
 .APP_hyperlink {
 bottom: 6px;
 right: 0px;
-color: rgb(188, 188, 188);
+color: rgb(216, 216, 216);
 margin-bottom: 0px;
 position: absolute;
 font-size: 13px;
@@ -528,7 +534,7 @@ width: 48px;
 float: right;
 right: -17px;
 height: 48px;
-background: rgb(130, 130, 130);
+background: rgb(162, 162, 162);
 border-radius: 11px;
 margin-top: 6px;
 margin-left: 42px;
@@ -537,7 +543,7 @@ font-family: arial;
 font-size: 67px;
 line-height: 50px;
 text-align: center;
-color: rgb(207, 207, 207);
+color: rgb(246, 246, 246);
 }
 .APP_hyperlink_app_image:hover {
 background: orange;
@@ -548,7 +554,7 @@ color: white;
 position: absolute;
 margin-top: 62px;
 font-family: arial;
-color: rgb(188, 188, 188);
+color: rgb(216, 216, 216);
 font-size: 13px;
 width: 91px;
 text-align: center;

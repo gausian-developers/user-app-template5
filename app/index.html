@@ -82,43 +82,69 @@
     </div>
     <div class="details">
       <img class="details_img" src="img/id_blue.png"/>
+      <div class="details_content_text" ng-show="customer.email != null">
       {{customer.email}}
+      </div>
     </div>
     <div class="details">
       <img class="details_img" src="img/email_blue.png"/>
+      <div class="details_content_text" ng-show="customer.email != null">
       {{customer.email}}
+      </div>
     </div>
     <div class="details">
       <img class="details_img" src="img/home_blue.png"/>
+      <div class="details_content_text" ng-show="customer.email != null">
       {{customer.email}}
+      </div>
     </div>
     <div class="details">
       <img class="details_img" src="img/mobile_blue.png"/>
+      <div class="details_content_text" ng-show="customer.mobile_phone != null">
       {{customer.mobile_phone}}
+      </div>
     </div>
     <div class="details">
       <img class="details_img" src="img/tele_blue.png"/>
+      <div class="details_content_text" ng-show="customer.work_phone != null">
       {{customer.work_phone}}
+      </div>
     </div>
     <div class="details">
       <img class="details_img" src="img/mail_blue.png"/>
-      {{
-      customer.mail_address + ", " +
-      customer.mail_city + ", " +
-      customer.mail_state + ", " +
-      customer.mail_zip + ", " +
-      customer.mail_country
-      }}
+      <div class="details_content_text" ng-show="customer.mail_address != null">
+      {{customer.mail_address}},&nbsp
+      </div>
+      <div class="details_content_text" ng-show="customer.mail_city != null">
+      {{customer.mail_city}},&nbsp
+      </div>
+      <div class="details_content_text" ng-show="customer.mail_state != null">
+      {{customer.mail_state}},&nbsp
+      </div>
+      <div class="details_content_text" ng-show="customer.mail_country != null">
+      {{customer.mail_country}},&nbsp
+      </div>
+      <div class="details_content_text" ng-show="customer.mail_zip != null">
+      ZIP {{customer.mail_zip}}
+      </div>
     </div>
     <div class="details">
       <img class="details_img" src="img/ship_blue.png"/>
-      {{
-      customer.shipment_address + ", " +
-      customer.shipment_city + ", " +
-      customer.shipment_state + ", " +
-      customer.shipment_zip + ", " +
-      customer.shipment_country
-      }}
+      <div class="details_content_text" ng-show="customer.shipment_address != null">
+      {{customer.shipment_address}},&nbsp
+      </div>
+      <div class="details_content_text" ng-show="customer.shipment_city != null">
+      {{customer.shipment_city}},&nbsp
+      </div>
+      <div class="details_content_text" ng-show="customer.shipment_state != null">
+      {{customer.shipment_state}},&nbsp
+      </div>
+      <div class="details_content_text" ng-show="customer.shipment_country != null">
+      {{customer.shipment_country}},&nbsp
+      </div>
+      <div class="details_content_text" ng-show="customer.shipment_zip != null">
+      ZIP {{customer.shipment_zip}}
+      </div>
     </div>
   </div>
 
