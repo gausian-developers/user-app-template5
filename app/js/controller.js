@@ -106,6 +106,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
   };
 
   $scope.updateCustomer = function() {
+      // send update request to ASA
       var req = {
         method: 'POST',
         url: 'http://asa.gausian.com',
@@ -131,11 +132,36 @@ var customerApp = angular.module('customerApp',['ngRoute'])
         })
       }
       $http(req).success(function(data) {
+        // change current page info
         $scope.customer = angular.copy($scope.customerUpdate);
+        // get all customers info again from ASA to sync JSON with server
+        // can be changed to only sync the updated customer later
+        var req = {
+          method: 'POST',
+          url: 'http://asa.gausian.com',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          data: $.param({user_app_id:'app_id', service_app_name:'Customer', request_string: "get"})
+        };
+        $http(req).success(function(data) {
+          // console.log('done');
+          // console.log(data.response);
+          $scope.customers = angular.fromJson(data.response);
+          console.log($scope.customers);
+          for(var i=0; i<$scope.customers.length; i++){
+            var customer = $scope.customers[i];
+            if(customer.id === $scope.userId){
+              $scope.showInfo(customer);
+            }
+          }
+        });
+        // close edit page, open info page
         $("#editForm").hide();
         $("#informationForm").hide();
         $("#customerInformation").show();
       });
+      
   };
 
   $scope.deleteCustomer = function() {
