@@ -214,7 +214,7 @@
       ng-show="customerUpdate.mail_address != null || customerUpdate.mail_city != null || customerUpdate.mail_state != null || customerUpdate.mail_country != null || customerUpdate.mail_zip != null"
       />
       <img class="no_info_img" src="img/mail_gray.png" 
-      ng-show="customer.mail_address == null && customer.mail_city == null && customer.mail_state == null && customer.mail_country == null && customer.mail_zip == null"
+      ng-show="customerUpdate.mail_address == null && customerUpdate.mail_city == null && customerUpdate.mail_state == null && customerUpdate.mail_country == null && customerUpdate.mail_zip == null"
       />
       <input class="item_input" type="text" name="mail_address" ng-model="customerUpdate.mail_address" ng-initial
       placeholder="Mail Street Address"></input>
