@@ -55,7 +55,6 @@
     </div>
   </div>
 
-  <!-- LEFT LIST -->
   <div class="list_container">
     <div ng-repeat="customer in customers | filter:query | orderBy:orderProp">
       <div class="list_customers" ng-click="showInfo(customer)" ng-class="{list_selected: customer.id == selected}">
@@ -65,7 +64,6 @@
     </div>
   </div>
 
-  <!-- WELCOME PAGE -->
   <div id="welcome">
     <div class="welcome_title">Welcome to Customers</div>
     <div class="welcome_quote">
@@ -73,7 +71,6 @@
     </div>
   </div>
 
-  <!-- DETAIL PAGE -->
   <div class="detail_container fadeIn fadeIn-20ms" hidden id="customerInformation">
     <div class="detail_name">
       {{customer.first + " " + customer.last}}
@@ -166,18 +163,36 @@
     </div>
   </div>
 
-  <!-- EDIT PAGE -->
-  <div class="edit_container fadeIn fadeIn-20ms" hidden id="editForm">
+
+  <div class="detail_container_2 fadeIn fadeIn-20ms" hidden id="editForm">
+    <div class="detail_page_title">Edit Customer Info</div>
     <form class="infoForm">
-      <!-- Name can not be changed -->
-      <div class="detail_name">
-        {{customer.first + " " + customer.last}}
-      </div>
-      <div class="save_customer" type="button" ng-click="save(true)">Save Changes</div>
-      <div class="delete_customer" type="button" ng-click="deleteCustomer()">Delete</div>
-      <div class="decoration_seperator"></div>
-      <div class="detail_company_name">
-        {{customer.company_name + " " + customer.department_name}}
+      <div class="item_name_container">
+        <div>First</div>
+        <div>Last</div>
+        <div>Company</div>
+        <div>Department</div>
+        <div>Email</div>
+        <div>Tel</div>
+        <div>Mobile</div>
+        <div class="item_collapsible_symbol"
+          ng-model="expand_shipment_addr" ng-click="expand_shipment_addr=!expand_shipment_addr">
+          {{expand_shipment_addr === true ? "-" : "+"}}
+        </div>
+        <div class="item_name_container" ng-show="expand_shipment_addr">Street</div>
+        <div class="item_name_container" ng-show="expand_shipment_addr">City</div>
+        <div class="item_name_container" ng-show="expand_shipment_addr">State</div>
+        <div class="item_name_container" ng-show="expand_shipment_addr">country</div>
+        <div class="item_name_container" ng-show="expand_shipment_addr">Zip</div>
+        <div class="item_collapsible_symbol"
+          ng-model="expand_mail_addr" ng-click="expand_mail_addr=!expand_mail_addr">
+          {{expand_mail_addr === true ? "-" : "+"}}
+        </div>
+        <div class="item_name_container" ng-show="expand_mail_addr">Street</div>
+        <div class="item_name_container" ng-show="expand_mail_addr">City</div>
+        <div class="item_name_container" ng-show="expand_mail_addr">State</div>
+        <div class="item_name_container" ng-show="expand_mail_addr">country</div>
+        <div class="item_name_container" ng-show="expand_mail_addr">Zip</div>
       </div>
       <div class="item_input_container">
         <input class="item_input" type="text" name="first" ng-model="customerUpdate.first" ng-initial></input>
@@ -215,8 +230,7 @@
     </form>
   </div>
 
-  <!-- NEW PAGE -->
-  <div class="new_container fadeIn fadeIn-20ms" hidden id="informationForm">
+  <div class="detail_container_2 fadeIn fadeIn-20ms" hidden id="informationForm">
     <div class="detail_page_title">Add New Customer</div>
     <form class="infoForm">
       <div class="item_name_container">
