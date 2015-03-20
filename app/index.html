@@ -173,45 +173,78 @@
       <div class="detail_name">
         {{customer.first + " " + customer.last}}
       </div>
-      <div class="save_customer" type="button" ng-click="save(true)">Save Changes</div>
-      <div class="delete_customer" type="button" ng-click="deleteCustomer()">Delete</div>
+      <div class="save_customer" type="button" ng-click="updateCustomer()">Save</div>
+      <div class="delete_customer" type="button" ng-click="deleteCustomer()">Delete this customer</div>
       <div class="decoration_seperator"></div>
       <div class="detail_company_name">
         {{customer.company_name + " " + customer.department_name}}
       </div>
-      <div class="item_input_container">
-        <input class="item_input" type="text" name="first" ng-model="customerUpdate.first" ng-initial></input>
-        <input class="item_input" type="text" name="last" ng-model="customerUpdate.last" ng-initial></input>
-        <input class="item_input" type="text" name="company_name" ng-model="customerUpdate.company_name" ng-initial></input>
-        <input class="item_input" type="text" name="department_name" ng-model="customerUpdate.department_name" ng-initial></input>
-        <input class="item_input" type="text" name="email" ng-model="customerUpdate.email" ng-initial></input>
-        <input class="item_input" type="text" name="work_phone" ng-model="customerUpdate.work_phone" ng-initial></input>
-        <input class="item_input" type="text" name="mobile_phone" ng-model="customerUpdate.mobile_phone" ng-initial></input>
-        <div class="item_collapsible_name">Shipment Address</div>
-        <input class="item_input" type="text" name="shipment_address" ng-model="customerUpdate.shipment_address" ng-initial
-          ng-show="expand_shipment_addr"></input>
-        <input class="item_input" type="text" name="shipment_city" ng-model="customerUpdate.shipment_city" ng-initial
-          ng-show="expand_shipment_addr"></input>
-        <input class="item_input" type="text" name="shipment_state" ng-model="customerUpdate.shipment_state" ng-initial
-          ng-show="expand_shipment_addr"></input>
-        <input class="item_input" type="text" name="shipment_country" ng-model="customerUpdate.shipment_country" ng-initial
-          ng-show="expand_shipment_addr"></input>
-        <input class="item_input" type="text" name="shipment_zip" ng-model="customerUpdate.shipment_zip" ng-initial
-          ng-show="expand_shipment_addr"></input>
-        <div class="item_collapsible_name">Mail Address</div>
-        <input class="item_input" type="text" name="mail_address" ng-model="customerUpdate.mail_address" ng-initial
-          ng-show="expand_mail_addr"></input>
-        <input class="item_input" type="text" name="mail_city" ng-model="customerUpdate.mail_city" ng-initial
-          ng-show="expand_mail_addr"></input>
-        <input class="item_input" type="text" name="mail_state" ng-model="customerUpdate.mail_state" ng-initial
-          ng-show="expand_mail_addr"></input>
-        <input class="item_input" type="text" name="mail_country" ng-model="customerUpdate.mail_country" ng-initial
-          ng-show="expand_mail_addr"></input>
-        <input class="item_input" type="text" name="mail_zip" ng-model="customerUpdate.mail_zip" ng-initial
-          ng-show="expand_mail_addr"></input>
-        <div class="item_delete" type="button" ng-click="deleteCustomer()">Delete</div>
-        <div class="item_save" type="button" ng-click="save(true)">Save</div>
-      </div>
+    <div class="details">
+      <img class="details_img" src="img/id_blue.png" ng-show="customerUpdate.email != null"/>
+      <img class="no_info_img" src="img/id_gray.png" ng-show="customerUpdate.email == null"/>
+      <input class="item_input" type="text" name="email" ng-model="customerUpdate.email" ng-initial
+      placeholder="Customer ID"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/email_blue.png" ng-show="customerUpdate.email != null"/>
+      <img class="no_info_img" src="img/email_gray.png" ng-show="customerUpdate.email == null"/>
+      <input class="item_input" type="text" name="email" ng-model="customerUpdate.email" ng-initial
+      placeholder="Email"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/home_blue.png" ng-show="customerUpdate.email != null"/>
+      <img class="no_info_img" src="img/home_gray.png" ng-show="customerUpdate.email == null"/>
+      <input class="item_input" type="text" name="email" ng-model="customerUpdate.email" ng-initial
+      placeholder="Website"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/mobile_blue.png" ng-show="customerUpdate.mobile_phone != null"/>
+      <img class="no_info_img" src="img/mobile_gray.png" ng-show="customerUpdate.mobile_phone == null"/>
+      <input class="item_input" type="text" name="mobile_phone" ng-model="customerUpdate.mobile_phone" ng-initial
+      placeholder="Mobile Phone"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/tele_blue.png" ng-show="customerUpdate.work_phone != null"/>
+      <img class="no_info_img" src="img/tele_gray.png" ng-show="customerUpdate.work_phone == null"/>
+      <input class="item_input" type="text" name="work_phone" ng-model="customerUpdate.work_phone" ng-initial
+      placeholder="Telephone"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/mail_blue.png" 
+      ng-show="customerUpdate.mail_address != null || customerUpdate.mail_city != null || customerUpdate.mail_state != null || customerUpdate.mail_country != null || customerUpdate.mail_zip != null"
+      />
+      <img class="no_info_img" src="img/mail_gray.png" 
+      ng-show="customer.mail_address == null && customer.mail_city == null && customer.mail_state == null && customer.mail_country == null && customer.mail_zip == null"
+      />
+      <input class="item_input" type="text" name="mail_address" ng-model="customerUpdate.mail_address" ng-initial
+      placeholder="Mail Street Address"></input>
+      <input class="item_input_2" type="text" name="mail_city" ng-model="customerUpdate.mail_city" ng-initial
+      placeholder="City"></input>
+      <input class="item_input_2" type="text" name="mail_state" ng-model="customerUpdate.mail_state" ng-initial
+      placeholder="State"></input>
+      <input class="item_input_2" type="text" name="mail_country" ng-model="customerUpdate.mail_country" ng-initial
+      placeholder="Country"></input>
+      <input class="item_input_2" type="text" name="mail_zip" ng-model="customerUpdate.mail_zip" ng-initial
+      placeholder="Zip"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/ship_blue.png" 
+      ng-show="customerUpdate.shipment_address != null || customerUpdate.shipment_city != null || customerUpdate.shipment_state != null || customerUpdate.shipment_country != null || customerUpdate.shipment_zip != null"
+      />
+      <img class="no_info_img" src="img/ship_gray.png" 
+      ng-show="customerUpdate.shipment_address == null && customerUpdate.shipment_city == null && customerUpdate.shipment_state == null && customerUpdate.shipment_country == null && customerUpdate.shipment_zip == null"
+      />
+      <input class="item_input" type="text" name="shipment_address" ng-model="customerUpdate.shipment_address" ng-initial
+      placeholder="Shipment Street Address"></input>
+      <input class="item_input_2" type="text" name="shipment_city" ng-model="customerUpdate.shipment_city" ng-initial
+      placeholder="City"></input>
+      <input class="item_input_2" type="text" name="shipment_state" ng-model="customerUpdate.shipment_state" ng-initial
+      placeholder="State"></input>
+      <input class="item_input_2" type="text" name="shipment_country" ng-model="customerUpdate.shipment_country" ng-initial
+      placeholder="Country"></input>
+      <input class="item_input_2" type="text" name="shipment_zip" ng-model="customerUpdate.shipment_zip" ng-initial
+      placeholder="Zip"></input>
+    </div>
     </form>
   </div>
 
@@ -284,7 +317,7 @@
           ng-show="expand_mail_addr"></input>
         <input class="item_input" type="text" name="mail_zip" ng-model="customerUpdate.mail_zip" ng-initial
           ng-show="expand_mail_addr"></input>
-        <div class="new_customer_save" type="button" ng-click="save(false)">Save as a New Customer</div>
+        <div class="new_customer_save" type="button" ng-click="newCustomer()">Save as a New Customer</div>
       </div>
     </form>
   </div>

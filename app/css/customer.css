@@ -1,6 +1,7 @@
 body {
 min-width: 850px;
 min-height: 530px;
+overflow: hidden;
 }
 .whole_container {
 position:absolute;
@@ -10,6 +11,7 @@ left: 0px;
 right: 0px;
 overflow: none;
 background: rgb(240, 240, 240);
+overflow: hidden;
 }
 .Top_bar {
 position: absolute;
@@ -210,12 +212,12 @@ font-size: 17px;
 }
 .detail_container {
 position: absolute;
-top: 35px;
+top: 44px;
 bottom: 0px;
 right: 0px;
 padding-top: 40px;
 padding-left: 50px;
-padding-bottom: 20px;
+padding-bottom: 60px;
 padding-right: 50px;
 left: 230px;
 overflow-y: auto;
@@ -225,12 +227,12 @@ background: transparent;
 }
 .edit_container {
 position: absolute;
-top: 35px;
+top: 44px;
 bottom: 0px;
 right: 0px;
 padding-top: 40px;
 padding-left: 50px;
-padding-bottom: 20px;
+padding-bottom: 60px;
 padding-right: 50px;
 left: 230px;
 overflow-y: auto;
@@ -280,8 +282,7 @@ left: 10px;
 float: left;
 font-family: arial;
 font-size: 15px;
-color: rgb(0, 144, 70);
-padding-left: 10px;
+color: rgb(51,176,240);
 }
 .save_customer:hover {
 cursor:pointer;
@@ -289,8 +290,8 @@ cursor:pointer;
 .delete_customer{
 position: relative;
 top: 16px;
-left: 10px;
-float: left;
+right: 24px;
+float: right;
 font-family: arial;
 font-size: 15px;
 color: rgb(202, 0, 0);
@@ -303,7 +304,7 @@ cursor:pointer;
 position: relative;
 clear: left;
 top: -7px;
-width: calc(100% - 80px);
+width: calc(100% - 20px);
 height: 4px;
 background: #0fb4e7; /* Old browsers */
 background: -moz-linear-gradient(left,  #0fb4e7 0%, #a9e4f7 100%); /* FF3.6+ */
@@ -327,7 +328,7 @@ clear: left;
 .details {
 font-family: arial;
 font-size: 16px;
-height: 34px;
+height: 36px;
 line-height: 24px;
 padding-bottom: 8px;
 padding-left: 0px;
@@ -362,19 +363,19 @@ float: left;
 left: 8px;
 }
 ::-webkit-input-placeholder {
-   color: rgb(80,80,80);
+   color: rgb(150,150,150);
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: rgb(80,80,80);
+   color: rgb(150,150,150);
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: rgb(80,80,80);
+   color: rgb(150,150,150);
 }
 
 :-ms-input-placeholder {  
-   color: rgb(80,80,80);
+   color: rgb(150,150,150);
 }
 .item_name_container {
 float: left;
@@ -389,30 +390,69 @@ color: rgb(108, 108, 108);
 }
 .item_input_container {
 float: left;
-top: 134px;
+top: 425px;
 left: 150px;
 padding-right: 40px;
 position: absolute;
 }
 .item_input {
-width: 98%;
+width: 320px;
+min-width: 320px;
+height: 29px;
 position: relative;
-left: 0px;
+top: -4px;
+left: 7px;
 padding-left: 10px;
 right: 9px;
 border-radius: 6px;
 border-style: none;
-background: rgb(158, 158, 158);
-color: rgb(244, 244, 244);
+color: rgb(63, 157, 232);
 font-size: 17px;
-line-height: 31px;
+font-weight: normal;
+line-height: 29px;
 margin-bottom: 4px;
+float: left;
+background: -moz-linear-gradient(left,  rgba(0,0,0,0.10) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.10)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(0,0,0,0.10) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(0,0,0,0.10) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(0,0,0,0.10) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+background: linear-gradient(to right,  rgba(0,0,0,0.10) 0%,rgba(0,0,0,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#24000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
 }
 .item_input:focus{
-background: rgb(51,176,240);
 text-decoration: none;
 outline: 0px;
-box-shadow: 0 0 7px black;
+}
+.item_input_2 {
+width: 320px;
+min-width: 320px;
+height: 29px;
+position: relative;
+top: -4px;
+left: 31px;
+padding-left: 10px;
+right: 9px;
+border-radius: 6px;
+border-style: none;
+color: rgb(63, 157, 232);
+font-size: 17px;
+font-weight: normal;
+line-height: 29px;
+margin-bottom: 4px;
+float: left;
+clear: left;
+background: -moz-linear-gradient(left,  rgba(0,0,0,0.14) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.14)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(0,0,0,0.14) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(0,0,0,0.14) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(0,0,0,0.14) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+background: linear-gradient(to right,  rgba(0,0,0,0.14) 0%,rgba(0,0,0,0) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#24000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+}
+.item_input_2:focus{
+text-decoration: none;
+outline: 0px;
 }
 .item_collapsible_symbol {
 padding-top: 0px;
