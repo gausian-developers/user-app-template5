@@ -143,6 +143,18 @@ box-shadow: 0 0 10px black;
 overflow-x: hidden;
 overflow-y: auto;
 }
+.search_result {
+height: 32px;
+width: 230px;
+float: left;
+padding-left: 38px;
+padding-top: 6px;
+margin-bottom: 0px;
+border-width: 2px;
+font-family: arial;
+font-size: 13px;
+color: rgb(195, 194, 194);
+}
 .list_customers {
 height: 58px;
 width: 230px;
