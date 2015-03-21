@@ -7,6 +7,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
 .controller('CustomerListCtrl', function($scope, $http, $route, $routeParams) {
 
   $scope.data;
+  $scope.selected = null;
   $scope.apps = [];
   var req = {
     method: 'POST',
@@ -52,6 +53,56 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       $scope.selected = customer.id;
   }
   $scope.orderProp = 'customer_id';
+
+  $scope.upDown = function(keyEvent) {
+    if (keyEvent.which === 38){
+      // select the customer above
+      if ($scope.selected !== null) {
+        // get the number of selected customer by matching id
+        for(var i=0; i<$scope.filtedCustomers.length; i++) {
+          var customer = $scope.filtedCustomers[i];
+          var current_number;
+          if(customer.id === $scope.selected) {
+            current_number = i;
+          }
+        }
+        if(current_number > 0) {
+          current_number = current_number - 1;
+        }
+        $scope.selected = $scope.filtedCustomers[current_number].id;
+        $scope.customer = $scope.filtedCustomers[current_number];
+      }
+    }
+    // select the customer behind
+    console.log($scope.filtedCustomers);
+    if (keyEvent.which === 40) {
+      // no customer selected before
+      if ($scope.selected === null) {
+        $scope.selected = $scope.filtedCustomers[0].id;
+        $scope.customer = $scope.filtedCustomers[0];
+        $("#welcome").hide();
+        $("#editForm").hide();
+        $("#newForm").hide();
+        $("#customerInformation").show();
+      }
+      // there is a selected customer before
+      else{
+        // get the number of selected customer by matching id
+        for(var i=0; i<$scope.filtedCustomers.length; i++) {
+          var customer = $scope.filtedCustomers[i];
+          var current_number;
+          if(customer.id === $scope.selected) {
+            current_number = i;
+          }
+        }
+        if(current_number<$scope.filtedCustomers.length) {
+          current_number = current_number + 1;
+        }
+        $scope.selected = $scope.filtedCustomers[current_number].id;
+        $scope.customer = $scope.filtedCustomers[current_number];
+      }
+    }
+  }
 
   $scope.selectSearch = function(keyEvent) {
     // if enter is input in search box
