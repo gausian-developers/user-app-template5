@@ -2,6 +2,8 @@
 
 
 var customerApp = angular.module('customerApp',['ngRoute'])
+
+
 .controller('CustomerListCtrl', function($scope, $http, $route, $routeParams) {
 
   $scope.data;
@@ -50,6 +52,20 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       $scope.selected = customer.id;
   }
   $scope.orderProp = 'customer_id';
+
+  $scope.selectSearch = function(keyEvent) {
+    // if enter is input in search box
+    if (keyEvent.which === 13){
+      // hide all pages
+      $("#welcome").hide();
+      $("#editForm").hide();
+      $("#newForm").hide();
+      // highlight the first filted search result
+      $scope.selected = $scope.filtedCustomers[0].id;
+      $scope.customer = $scope.filtedCustomers[0];
+      $("#customerInformation").show();
+    }
+  }
 
   $scope.editForm = function() {
     $("#welcome").hide();

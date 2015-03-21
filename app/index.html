@@ -18,7 +18,7 @@
 
   <div class="Top_bar">
     <button class="add_customer" id="addCustomer" ng-click="newForm()">+</button>
-    <input class="search_input" placeholder="Search Customer" ng-model="query"></input>
+    <input class="search_input" placeholder="Search Customer" ng-model="query" ng-keypress="selectSearch($event)"></input>
   </div>
 
   <div class="left_container">
@@ -57,7 +57,7 @@
     <div class="search_result" ng-hide="query == null || query ==''">
       Search Results
     </div>
-    <div ng-repeat="customer in customers | filter:query | orderBy:'last'">
+    <div ng-repeat="customer in (filtedCustomers = (customers | filter:query | orderBy:'last'))">
       <div class="list_customers" ng-click="showInfo(customer)" ng-class="{list_selected: customer.id == selected}">
         <div class="list_customers_name" ng-bind-template="{{customer.first}} {{customer.last}}"></div>
         <div class="list_customers_company" ng-bind-template="{{customer.company_name}}"></div>
