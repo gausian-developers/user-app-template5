@@ -131,15 +131,17 @@ cursor: pointer;
 }
 .list_container {
 position: absolute;
-top: 0px;
+top: 44px;
 left: 0px;
 width: 230px;
-height: 100%;
+height: calc(100% - 44px);
 background: rgb(110, 110, 110);
 line-height: 20px;
-padding-top: 44px;
-z-index: 1;	
+padding-top: 0px;
+z-index: 1;
 box-shadow: 0 0 10px black;
+overflow-x: hidden;
+overflow-y: auto;
 }
 .list_customers {
 height: 58px;

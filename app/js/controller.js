@@ -65,6 +65,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     $("#editForm").hide();
     $("#newForm").show();
     $scope.customerUpdate=null;
+    $scope.selected = null;
   };
 
   $scope.clearInfo = function(customer) {
