@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="customerApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="customerApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="customerApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="customerApp" class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="customerApp" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +17,7 @@
 <div class="whole_container">
 
   <div class="Top_bar">
-    <button class="add_customer" id="addCustomer" ng-click="showForm(false)">+</button>
+    <button class="add_customer" id="addCustomer" ng-click="newForm()">+</button>
     <input class="search_input" placeholder="Search Customer"></input>
   </div>
 
@@ -78,7 +75,7 @@
     <div class="detail_name">
       {{customer.first + " " + customer.last}}
     </div>
-    <div class="edit_customer" id="editCustomer" ng-click="showForm(true)">Edit</div>
+    <div class="edit_customer" id="editCustomer" ng-click="editForm()">Edit</div>
     <div class="decoration_seperator"></div>
     <div class="detail_company_name">
       {{customer.company_name + " " + customer.department_name}}
@@ -169,21 +166,15 @@
   <!-- EDIT PAGE -->
   <div class="edit_container fadeIn fadeIn-20ms" hidden id="editForm">
     <form class="infoForm">
-      <!-- Name can not be changed -->
-      <div class="detail_name">
-        {{customer.first + " " + customer.last}}
-      </div>
-      <div class="save_customer" type="button" ng-click="updateCustomer()">Save</div>
-      <div class="delete_customer" type="button" ng-click="deleteCustomer()">Delete this customer</div>
-      <div class="decoration_seperator"></div>
-      <div class="detail_company_name">
-        {{customer.company_name + " " + customer.department_name}}
-      </div>
-    <div class="details">
-      <img class="details_img" src="img/id_blue.png" ng-show="customerUpdate.email != null"/>
-      <img class="no_info_img" src="img/id_gray.png" ng-show="customerUpdate.email == null"/>
-      <input class="item_input" type="text" name="email" ng-model="customerUpdate.email" ng-initial
-      placeholder="Customer ID"></input>
+    <!-- Name can not be changed -->
+    <div class="detail_name">
+      {{customer.first + " " + customer.last}}
+    </div>
+    <div class="save_customer" type="button" ng-click="updateCustomer()">Save</div>
+    <div class="delete_customer" type="button" ng-click="deleteCustomer()">Delete this customer</div>
+    <div class="decoration_seperator"></div>
+    <div class="detail_company_name">
+     {{customer.company_name + " " + customer.department_name}}
     </div>
     <div class="details">
       <img class="details_img" src="img/email_blue.png" ng-show="customerUpdate.email != null"/>
@@ -249,78 +240,95 @@
   </div>
 
   <!-- NEW PAGE -->
-  <div class="new_container fadeIn fadeIn-20ms" hidden id="informationForm">
-    <div class="detail_page_title">Add New Customer</div>
+  <div class="new_container fadeIn fadeIn-20ms" hidden id="newForm">
     <form class="infoForm">
-      <div class="item_name_container">
-        <div>First</div>
-        <div>Last</div>
-        <div>Company</div>
-        <div>Department</div>
-        <div>Email</div>
-        <div>Tel</div>
-        <div>Mobile</div>
-        <div class="item_collapsible_symbol"
-          ng-model="expand_shipment_addr" ng-click="expand_shipment_addr=!expand_shipment_addr">
-          {{expand_shipment_addr === true ? "-" : "+"}}
-        </div>
-        <div class="item_name_container" ng-show="expand_shipment_addr">Street</div>
-        <div class="item_name_container" ng-show="expand_shipment_addr">City</div>
-        <div class="item_name_container" ng-show="expand_shipment_addr">State</div>
-        <div class="item_name_container" ng-show="expand_shipment_addr">country</div>
-        <div class="item_name_container" ng-show="expand_shipment_addr">Zip</div>
-        <div class="item_collapsible_symbol"
-          ng-model="expand_mail_addr" ng-click="expand_mail_addr=!expand_mail_addr">
-          {{expand_mail_addr === true ? "-" : "+"}}
-        </div>
-        <div class="item_name_container" ng-show="expand_mail_addr">Street</div>
-        <div class="item_name_container" ng-show="expand_mail_addr">City</div>
-        <div class="item_name_container" ng-show="expand_mail_addr">State</div>
-        <div class="item_name_container" ng-show="expand_mail_addr">country</div>
-        <div class="item_name_container" ng-show="expand_mail_addr">Zip</div>
+    <!-- Title -->
+      <div class="detail_name">
+        New Customer
       </div>
-      <div class="item_input_container">
-        <input class="item_input" type="text" name="first" ng-model="customerUpdate.first" ng-initial></input>
-        <input class="item_input" type="text" name="last" ng-model="customerUpdate.last" ng-initial></input>
-        <input class="item_input" type="text" name="company_name" ng-model="customerUpdate.company_name" ng-initial
-          placeholder="Individual / Example Inc. ...">
-        </input>
-        <input class="item_input" type="text" name="department_name" ng-model="customerUpdate.department_name" ng-initial
-          placeholder="Purchase / Manufacturing / Sales ...">
-        </input>
-        <input class="item_input" type="text" name="email" ng-model="customerUpdate.email" ng-initial></input>
-        <input class="item_input" type="text" name="work_phone" ng-model="customerUpdate.work_phone" ng-initial
-          placeholder="XXX-XXX-XXXX">
-        </input>
-        <input class="item_input" type="text" name="mobile_phone" ng-model="customerUpdate.mobile_phone" ng-initial
-          placeholder="XXX-XXX-XXXX">
-        </input>
-        <div class="item_collapsible_name">Shipment Address</div>
-        <input class="item_input" type="text" name="shipment_address" ng-model="customerUpdate.shipment_address" ng-initial
-          ng-show="expand_shipment_addr"></input>
-        <input class="item_input" type="text" name="shipment_city" ng-model="customerUpdate.shipment_city" ng-initial
-          ng-show="expand_shipment_addr"></input>
-        <input class="item_input" type="text" name="shipment_state" ng-model="customerUpdate.shipment_state" ng-initial
-          ng-show="expand_shipment_addr"></input>
-        <input class="item_input" type="text" name="shipment_country" ng-model="customerUpdate.shipment_country" ng-initial
-          ng-show="expand_shipment_addr"></input>
-        <input class="item_input" type="text" name="shipment_zip" ng-model="customerUpdate.shipment_zip" ng-initial
-          ng-show="expand_shipment_addr"></input>
-        <div class="item_collapsible_name">Mail Address</div>
-        <input class="item_input" type="text" name="mail_address" ng-model="customerUpdate.mail_address" ng-initial
-          ng-show="expand_mail_addr"></input>
-        <input class="item_input" type="text" name="mail_city" ng-model="customerUpdate.mail_city" ng-initial
-          ng-show="expand_mail_addr"></input>
-        <input class="item_input" type="text" name="mail_state" ng-model="customerUpdate.mail_state" ng-initial
-          ng-show="expand_mail_addr"></input>
-        <input class="item_input" type="text" name="mail_country" ng-model="customerUpdate.mail_country" ng-initial
-          ng-show="expand_mail_addr"></input>
-        <input class="item_input" type="text" name="mail_zip" ng-model="customerUpdate.mail_zip" ng-initial
-          ng-show="expand_mail_addr"></input>
-        <div class="new_customer_save" type="button" ng-click="newCustomer()">Save as a New Customer</div>
-      </div>
+      <div class="save_customer" type="button" ng-click="newCustomer()">Save</div>
+      <div class="decoration_seperator"></div>
+    <!-- Details -->
+    <div class="details_first">
+      <img class="details_img" src="img/mail_blue.png" 
+      ng-show="customerUpdate.first != null || customerUpdate.last != null || customerUpdate.company_name != null || customerUpdate.department_name != null"
+      />
+      <img class="no_info_img" src="img/mail_gray.png" 
+      ng-show="customerUpdate.first == null && customerUpdate.last == null && customerUpdate.company_name == null && customerUpdate.department_name == null"
+      />
+      <input class="item_input" type="text" name="email" ng-model="customerUpdate.first" ng-initial
+      placeholder="First Name"></input>
+      <input class="item_input_2" type="text" name="email" ng-model="customerUpdate.last" ng-initial
+      placeholder="Last Name"></input>
+      <input class="item_input_2" type="text" name="email" ng-model="customerUpdate.company_name" ng-initial
+      placeholder="Affiliation"></input>
+      <input class="item_input_2" type="text" name="email" ng-model="customerUpdate.department_name" ng-initial
+      placeholder="Title"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/email_blue.png" ng-show="customerUpdate.email != null"/>
+      <img class="no_info_img" src="img/email_gray.png" ng-show="customerUpdate.email == null"/>
+      <input class="item_input" type="text" name="email" ng-model="customerUpdate.email" ng-initial
+      placeholder="Email"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/home_blue.png" ng-show="customerUpdate.email != null"/>
+      <img class="no_info_img" src="img/home_gray.png" ng-show="customerUpdate.email == null"/>
+      <input class="item_input" type="text" name="email" ng-model="customerUpdate.email" ng-initial
+      placeholder="Website"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/mobile_blue.png" ng-show="customerUpdate.mobile_phone != null"/>
+      <img class="no_info_img" src="img/mobile_gray.png" ng-show="customerUpdate.mobile_phone == null"/>
+      <input class="item_input" type="text" name="mobile_phone" ng-model="customerUpdate.mobile_phone" ng-initial
+      placeholder="Mobile Phone"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/tele_blue.png" ng-show="customerUpdate.work_phone != null"/>
+      <img class="no_info_img" src="img/tele_gray.png" ng-show="customerUpdate.work_phone == null"/>
+      <input class="item_input" type="text" name="work_phone" ng-model="customerUpdate.work_phone" ng-initial
+      placeholder="Telephone"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/mail_blue.png" 
+      ng-show="customerUpdate.mail_address != null || customerUpdate.mail_city != null || customerUpdate.mail_state != null || customerUpdate.mail_country != null || customerUpdate.mail_zip != null"
+      />
+      <img class="no_info_img" src="img/mail_gray.png" 
+      ng-show="customerUpdate.mail_address == null && customerUpdate.mail_city == null && customerUpdate.mail_state == null && customerUpdate.mail_country == null && customerUpdate.mail_zip == null"
+      />
+      <input class="item_input" type="text" name="mail_address" ng-model="customerUpdate.mail_address" ng-initial
+      placeholder="Mail Street Address"></input>
+      <input class="item_input_2" type="text" name="mail_city" ng-model="customerUpdate.mail_city" ng-initial
+      placeholder="City"></input>
+      <input class="item_input_2" type="text" name="mail_state" ng-model="customerUpdate.mail_state" ng-initial
+      placeholder="State"></input>
+      <input class="item_input_2" type="text" name="mail_country" ng-model="customerUpdate.mail_country" ng-initial
+      placeholder="Country"></input>
+      <input class="item_input_2" type="text" name="mail_zip" ng-model="customerUpdate.mail_zip" ng-initial
+      placeholder="Zip"></input>
+    </div>
+    <div class="details">
+      <img class="details_img" src="img/ship_blue.png" 
+      ng-show="customerUpdate.shipment_address != null || customerUpdate.shipment_city != null || customerUpdate.shipment_state != null || customerUpdate.shipment_country != null || customerUpdate.shipment_zip != null"
+      />
+      <img class="no_info_img" src="img/ship_gray.png" 
+      ng-show="customerUpdate.shipment_address == null && customerUpdate.shipment_city == null && customerUpdate.shipment_state == null && customerUpdate.shipment_country == null && customerUpdate.shipment_zip == null"
+      />
+      <input class="item_input" type="text" name="shipment_address" ng-model="customerUpdate.shipment_address" ng-initial
+      placeholder="Shipment Street Address"></input>
+      <input class="item_input_2" type="text" name="shipment_city" ng-model="customerUpdate.shipment_city" ng-initial
+      placeholder="City"></input>
+      <input class="item_input_2" type="text" name="shipment_state" ng-model="customerUpdate.shipment_state" ng-initial
+      placeholder="State"></input>
+      <input class="item_input_2" type="text" name="shipment_country" ng-model="customerUpdate.shipment_country" ng-initial
+      placeholder="Country"></input>
+      <input class="item_input_2" type="text" name="shipment_zip" ng-model="customerUpdate.shipment_zip" ng-initial
+      placeholder="Zip"></input>
+    </div>
     </form>
   </div>
+
+  <!-- LINK PAGE -->
   <div class="hyperlink_container">
     <div ng-repeat="app in apps | filter:query | orderBy:orderProp">
       <div class="APP_hyperlink_onelink" ng-click="openCustomer(customer)">
@@ -329,7 +337,6 @@
         <div class="APP_hyperlink_app_name"> {{app.name}}</div>
       </div>
     </div>
-
     <div class="APP_hyperlink_onelink" ng-click="addLink()">
       <div class="APP_hyperlink_app_edge"></div>
       <div class="APP_hyperlink_app_image">+</div>
@@ -338,25 +345,18 @@
     <div class="APP_hyperlink" ng-click="addLink()">Direct Link</div>
   </div>
 
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-
-    <!-- In production use:
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-    -->
-    <script src="jquery-1.11.2.min.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="js/controller.js"></script>
-    <script src="js/customer.js"></script>
-    <script src="app.js"></script>
-    <script src="view1/view1.js"></script>
-    <script src="view2/view2.js"></script>
-    <script src="components/version/version.js"></script>
-    <script src="components/version/version-directive.js"></script>
-    <script src="components/version/interpolate-filter.js"></script>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="jquery-1.11.2.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="js/controller.js"></script>
+  <script src="js/customer.js"></script>
+  <script src="app.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
 </div>
 </body>
 </html>

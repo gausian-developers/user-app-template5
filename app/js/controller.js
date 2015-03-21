@@ -45,24 +45,26 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       console.log($scope.customer);
       $("#welcome").hide();
       $("#editForm").hide();
-      $("#informationForm").hide();
+      $("#newForm").hide();
       $("#customerInformation").show();
       $scope.selected = customer.id;
   }
   $scope.orderProp = 'customer_id';
 
-  $scope.showForm = function(flag) {
+  $scope.editForm = function() {
     $("#welcome").hide();
     $("#customerInformation").hide();
-    if(flag === false){
-      $scope.customerUpdate=null;
-      $("#informationForm").show();
-    }
-    //$scope.customerUpdate = $scope.selectedCustomer;
-    else{
-      $scope.customerUpdate = angular.copy($scope.customer);
-      $("#editForm").show();
-    }
+    $("#editForm").show();
+    $("#newForm").hide();
+    $scope.customerUpdate=angular.copy($scope.customer);
+  };
+
+  $scope.newForm = function() {
+    $("#welcome").hide();
+    $("#customerInformation").hide();
+    $("#editForm").hide();
+    $("#newForm").show();
+    $scope.customerUpdate=null;
   };
 
   $scope.clearInfo = function(customer) {
@@ -81,27 +83,52 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           service_app_name:'Customer',
           request_string: 
           'add first='+$scope.customerUpdate.first+
-          ' ,last='+$scope.customerUpdate.last+
-          ' ,email='+$scope.customerUpdate.email+
-          ' ,company_name='+$scope.customerUpdate.company_name+
-          ' ,department_name='+$scope.customerUpdate.department_name+
-          ' ,work_phone='+$scope.customerUpdate.work_phone+
-          ' ,mobile_phone='+$scope.customerUpdate.mobile_phone+
-          ' ,shipment_address='+$scope.customerUpdate.shipment_address+
-          ' ,shipment_city='+$scope.customerUpdate.shipment_city+
-          ' ,shipment_state='+$scope.customerUpdate.shipment_state+
-          ' ,shipment_zip='+$scope.customerUpdate.shipment_zip+
-          ' ,shipment_country='+$scope.customerUpdate.shipment_country
+          ', last='+$scope.customerUpdate.last+
+          ', email='+$scope.customerUpdate.email+
+          ', company_name='+$scope.customerUpdate.company_name+
+          ', department_name='+$scope.customerUpdate.department_name+
+          ', work_phone='+$scope.customerUpdate.work_phone+
+          ', mobile_phone='+$scope.customerUpdate.mobile_phone+
+          ', shipment_address='+$scope.customerUpdate.shipment_address+
+          ', shipment_city='+$scope.customerUpdate.shipment_city+
+          ', shipment_state='+$scope.customerUpdate.shipment_state+
+          ', shipment_zip='+$scope.customerUpdate.shipment_zip+
+          ', shipment_country='+$scope.customerUpdate.shipment_country
         })
       }
-      console.log(req.data);
+
       $http(req).success(function(data) {
-        //console.log(data.response);
-        $scope.customers.push($scope.customerUpdate);
+        // get new customer id so it can be selected in blue color
+        $scope.newcustomer = angular.fromJson(data.response);
+        $scope.selected = $scope.newcustomer.id;
+        // change current page info
         $scope.customer = angular.copy($scope.customerUpdate);
+        // get all customers info again from ASA to sync JSON with server
+        // can be changed to only sync the updated customer later
+        var req = {
+          method: 'POST',
+          url: 'http://asa.gausian.com',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          data: $.param({user_app_id:'app_id', service_app_name:'Customer', request_string: "get"})
+        };
+        $http(req).success(function(data) {
+          // console.log('done');
+          // console.log(data.response);
+          $scope.customers = angular.fromJson(data.response);
+          console.log($scope.customers);
+          for(var i=0; i<$scope.customers.length; i++){
+            var customer = $scope.customers[i];
+            if(customer.id === $scope.userId){
+              $scope.showInfo(customer);
+            }
+          }
+        });
+        // close new page, open info page
         $("#editForm").hide();
-        $("#informationForm").hide();
-        $scope.selected = null;
+        $("#newForm").hide();
+        $("#customerInformation").show();
       });
   };
 
@@ -117,17 +144,16 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           user_app_id:'app_id', 
           service_app_name:'Customer',
           request_string: 
-          'update'+
-          ' email='+$scope.customerUpdate.email+
-          ' ,company_name='+$scope.customerUpdate.company_name+
-          ' ,department_name='+$scope.customerUpdate.department_name+
-          ' ,work_phone='+$scope.customerUpdate.work_phone+
-          ' ,mobile_phone='+$scope.customerUpdate.mobile_phone+
-          ' ,shipment_address='+$scope.customerUpdate.shipment_address+
-          ' ,shipment_city='+$scope.customerUpdate.shipment_city+
-          ' ,shipment_state='+$scope.customerUpdate.shipment_state+
-          ' ,shipment_zip='+$scope.customerUpdate.shipment_zip+
-          ' ,shipment_country='+$scope.customerUpdate.shipment_country+
+          'update email='+$scope.customerUpdate.email+
+          ', company_name='+$scope.customerUpdate.company_name+
+          ', department_name='+$scope.customerUpdate.department_name+
+          ', work_phone='+$scope.customerUpdate.work_phone+
+          ', mobile_phone='+$scope.customerUpdate.mobile_phone+
+          ', shipment_address='+$scope.customerUpdate.shipment_address+
+          ', shipment_city='+$scope.customerUpdate.shipment_city+
+          ', shipment_state='+$scope.customerUpdate.shipment_state+
+          ', shipment_zip='+$scope.customerUpdate.shipment_zip+
+          ', shipment_country='+$scope.customerUpdate.shipment_country+
           ' on id='+$scope.customerUpdate.id
         })
       }
@@ -158,7 +184,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
         });
         // close edit page, open info page
         $("#editForm").hide();
-        $("#informationForm").hide();
+        $("#newForm").hide();
         $("#customerInformation").show();
       });
       
