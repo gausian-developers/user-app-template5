@@ -4,10 +4,14 @@
 var customerApp = angular.module('customerApp',['ngRoute'])
 
 
-.controller('CustomerListCtrl', function($scope, $http, $route, $routeParams) {
+  .controller('CustomerListCtrl', function($scope, $http, $route, $routeParams) {
 
   $scope.data;
+  $scope.query = "";
   $scope.selected = null;
+  $scope.letterSearchFlag = false;
+  $scope.noMatchFlag = true;
+  $scope.letterMatchedCustomers = [];
   $scope.apps = [];
   var req = {
     method: 'POST',
@@ -44,63 +48,156 @@ var customerApp = angular.module('customerApp',['ngRoute'])
   });
 
   $scope.showInfo = function(customer) {
-      $scope.customer=customer;
-      console.log($scope.customer);
-      $("#welcome").hide();
-      $("#editForm").hide();
-      $("#newForm").hide();
-      $("#customerInformation").show();
-      $scope.selected = customer.id;
+    $scope.letterSearchFlag = false;
+    $scope.customer=customer;
+    $scope.query="";
+    $("#welcome").hide();
+    $("#editForm").hide();
+    $("#newForm").hide();
+    $("#noResult").hide();
+    $("#customerInformation").fadeIn();
+    $scope.selected = customer.id;
   }
-  $scope.orderProp = 'customer_id';
 
-  $scope.upDown = function(keyEvent) {
-    if (keyEvent.which === 38){
-      // select the customer above
-      if ($scope.selected !== null) {
-        // get the number of selected customer by matching id
-        for(var i=0; i<$scope.filtedCustomers.length; i++) {
-          var customer = $scope.filtedCustomers[i];
-          var current_number;
-          if(customer.id === $scope.selected) {
-            current_number = i;
-          }
-        }
-        if(current_number > 0) {
-          current_number = current_number - 1;
-        }
-        $scope.selected = $scope.filtedCustomers[current_number].id;
-        $scope.customer = $scope.filtedCustomers[current_number];
+  $scope.searchLetter = function(letter) {
+    $("#welcome").hide();
+    $("#noResult").hide();
+    $("#editForm").hide();
+    $("#newForm").hide();
+    $("#customerInformation").hide();
+    $scope.selected = null;
+    $scope.query = "";
+    $scope.letterMatchedCustomers = [];
+    var j=0;
+    for(var i=0; i<$scope.customers.length; i++){
+      var customer = $scope.customers[i];
+      if(customer.first[0] === letter || customer.last[0] === letter ){
+        $scope.letterMatchedCustomers[j++] = customer;
       }
     }
-    // select the customer behind
-    console.log($scope.filtedCustomers);
-    if (keyEvent.which === 40) {
-      // no customer selected before
-      if ($scope.selected === null) {
-        $scope.selected = $scope.filtedCustomers[0].id;
-        $scope.customer = $scope.filtedCustomers[0];
-        $("#welcome").hide();
-        $("#editForm").hide();
-        $("#newForm").hide();
-        $("#customerInformation").show();
-      }
-      // there is a selected customer before
-      else{
-        // get the number of selected customer by matching id
-        for(var i=0; i<$scope.filtedCustomers.length; i++) {
-          var customer = $scope.filtedCustomers[i];
-          var current_number;
-          if(customer.id === $scope.selected) {
-            current_number = i;
+    // if no matching result, raise flag and show all customers in list
+    if($scope.letterMatchedCustomers.length === 0) {
+      $scope.noMatchFlag = true;
+      $scope.letterMatchedCustomers = [];
+      $scope.letterMatchedCustomers = $scope.customers;
+      $("#noResult").fadeIn();
+    }
+    else {
+      $scope.noMatchFlag = false;
+    }
+    // display Letter Filted Results
+    $scope.letterSearchFlag = true;
+  }
+
+  $scope.changeSearch = function() {
+    // disable letter search when search box is input
+    $scope.letterSearchFlag = false;
+    // remove selected customer
+    $scope.selected = null;
+  }
+
+  $scope.upDown = function(keyEvent) {
+    // if it is not letter filtering, up down the full customer list
+    if ($scope.letterSearchFlag === false){
+      if (keyEvent.which === 38){
+        // select the customer above
+        if ($scope.selected !== null) {
+          // get the number of selected customer by matching id
+          for(var i=0; i<$scope.filtedCustomers.length; i++) {
+            var customer = $scope.filtedCustomers[i];
+            var current_number;
+            if(customer.id === $scope.selected) {
+              current_number = i;
+            }
           }
+          if(current_number > 0) {
+            current_number = current_number - 1;
+          }
+          $scope.selected = $scope.filtedCustomers[current_number].id;
+          $scope.customer = $scope.filtedCustomers[current_number];
         }
-        if(current_number<$scope.filtedCustomers.length) {
-          current_number = current_number + 1;
-        }
-        $scope.selected = $scope.filtedCustomers[current_number].id;
-        $scope.customer = $scope.filtedCustomers[current_number];
       }
+      // select the customer behind
+      console.log($scope.filtedCustomers);
+      if (keyEvent.which === 40) {
+        // no customer selected before
+        if ($scope.selected === null) {
+          $scope.selected = $scope.filtedCustomers[0].id;
+          $scope.customer = $scope.filtedCustomers[0];
+          $("#welcome").hide();
+          $("#editForm").hide();
+          $("#newForm").hide();
+          $("#noResult").hide();
+          $("#customerInformation").show();
+        }
+        // there is a selected customer before
+        else{
+          // get the number of selected customer by matching id
+          for(var i=0; i<$scope.filtedCustomers.length; i++) {
+            var customer = $scope.filtedCustomers[i];
+            var current_number;
+            if(customer.id === $scope.selected) {
+              current_number = i;
+            }
+          }
+          if(current_number<$scope.filtedCustomers.length) {
+            current_number = current_number + 1;
+          }
+          $scope.selected = $scope.filtedCustomers[current_number].id;
+          $scope.customer = $scope.filtedCustomers[current_number];
+        }
+      }
+    }
+    // else if it is filtering letter, up down the full customer list
+    else if ($scope.letterSearchFlag === true) {
+      if (keyEvent.which === 38){
+        // select the customer above
+        if ($scope.selected !== null) {
+          // get the number of selected customer by matching id
+          for(var i=0; i<$scope.letterMatchedCustomers.length; i++) {
+            var customer = $scope.letterMatchedCustomers[i];
+            var current_number;
+            if(customer.id === $scope.selected) {
+              current_number = i;
+            }
+          }
+          if(current_number > 0) {
+            current_number = current_number - 1;
+          }
+          $scope.selected = $scope.letterMatchedCustomers[current_number].id;
+          $scope.customer = $scope.letterMatchedCustomers[current_number];
+        }
+      }
+      // select the customer behind
+      console.log($scope.letterMatchedCustomers);
+      if (keyEvent.which === 40) {
+        // no customer selected before
+        if ($scope.selected === null) {
+          $scope.selected = $scope.letterMatchedCustomers[0].id;
+          $scope.customer = $scope.letterMatchedCustomers[0];
+          $("#welcome").hide();
+          $("#editForm").hide();
+          $("#newForm").hide();
+          $("#noResult").hide();
+          $("#customerInformation").show();
+        }
+        // there is a selected customer before
+        else{
+          // get the number of selected customer by matching id
+          for(var i=0; i<$scope.letterMatchedCustomers.length; i++) {
+            var customer = $scope.letterMatchedCustomers[i];
+            var current_number;
+            if(customer.id === $scope.selected) {
+              current_number = i;
+            }
+          }
+          if(current_number<$scope.letterMatchedCustomers.length) {
+            current_number = current_number + 1;
+          }
+          $scope.selected = $scope.letterMatchedCustomers[current_number].id;
+          $scope.customer = $scope.letterMatchedCustomers[current_number];
+        }
+      }      
     }
   }
 
@@ -111,10 +208,24 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       $("#welcome").hide();
       $("#editForm").hide();
       $("#newForm").hide();
+      $("#noResult").hide();
+      $("#customerInformation").hide();
       // highlight the first filted search result
-      $scope.selected = $scope.filtedCustomers[0].id;
-      $scope.customer = $scope.filtedCustomers[0];
-      $("#customerInformation").show();
+      if($scope.filtedCustomers.length > 0) {
+        $scope.selected = $scope.filtedCustomers[0].id;
+        $scope.customer = $scope.filtedCustomers[0];
+        $("#customerInformation").show();
+        $scope.noMatchFlag = false;
+      }
+      // no search result
+      else {
+        $("#noResult").show();
+        $scope.noMatchFlag = true;
+      }
+    }
+    // if escape is input in search box
+    if (keyEvent.which === 27){
+      $scope.query = "";
     }
   }
 
@@ -131,6 +242,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     $("#customerInformation").hide();
     $("#editForm").hide();
     $("#newForm").show();
+    $("#noResult").hide();
     $scope.customerUpdate=null;
     $scope.selected = null;
   };
@@ -196,6 +308,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
         // close new page, open info page
         $("#editForm").hide();
         $("#newForm").hide();
+        $("#noResult").hide();
         $("#customerInformation").show();
       });
   };
@@ -253,6 +366,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
         // close edit page, open info page
         $("#editForm").hide();
         $("#newForm").hide();
+        $("#noResult").hide();
         $("#customerInformation").show();
       });
       
