@@ -13,6 +13,8 @@ var customerApp = angular.module('customerApp',['ngRoute'])
   $scope.noMatchFlag = true;
   $scope.letterMatchedCustomers = [];
   $scope.apps = [];
+  $scope.welcome_number = Math.ceil(Math.random() * 7);
+
   var req = {
     method: 'POST',
     url: 'http://asa.gausian.com',
@@ -47,6 +49,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     }
   });
 
+
   $scope.showInfo = function(customer) {
     $scope.letterSearchFlag = false;
     $scope.customer=customer;
@@ -54,14 +57,16 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     $("#welcome").hide();
     $("#editForm").hide();
     $("#newForm").hide();
-    $("#noResult").hide();
+    $("#noSearchResult").hide();
+    $("#noLetterResult").hide();
     $("#customerInformation").fadeIn();
     $scope.selected = customer.id;
   }
 
   $scope.searchLetter = function(letter) {
     $("#welcome").hide();
-    $("#noResult").hide();
+    $("#noSearchResult").hide();
+    $("#noLetterResult").hide();
     $("#editForm").hide();
     $("#newForm").hide();
     $("#customerInformation").hide();
@@ -80,12 +85,13 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       $scope.noMatchFlag = true;
       $scope.letterMatchedCustomers = [];
       $scope.letterMatchedCustomers = $scope.customers;
-      $("#noResult").fadeIn();
+      $("#noLetterResult").fadeIn();
     }
     else {
       $scope.noMatchFlag = false;
     }
     // display Letter Filted Results
+    $scope.current_letter = letter;
     $scope.letterSearchFlag = true;
   }
 
@@ -96,9 +102,10 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     $scope.selected = null;
   }
 
-  $scope.upDown = function(keyEvent) {
+  $scope.upDown_escape = function(keyEvent) {
     // if it is not letter filtering, up down the full customer list
-    if ($scope.letterSearchFlag === false){
+    if ($scope.letterSearchFlag === false)
+    {
       if (keyEvent.which === 38){
         // select the customer above
         if ($scope.selected !== null) {
@@ -118,7 +125,6 @@ var customerApp = angular.module('customerApp',['ngRoute'])
         }
       }
       // select the customer behind
-      console.log($scope.filtedCustomers);
       if (keyEvent.which === 40) {
         // no customer selected before
         if ($scope.selected === null) {
@@ -127,7 +133,8 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           $("#welcome").hide();
           $("#editForm").hide();
           $("#newForm").hide();
-          $("#noResult").hide();
+          $("#noSearchResult").hide();
+          $("#noLetterResult").hide();
           $("#customerInformation").show();
         }
         // there is a selected customer before
@@ -146,6 +153,17 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           $scope.selected = $scope.filtedCustomers[current_number].id;
           $scope.customer = $scope.filtedCustomers[current_number];
         }
+      }
+      // escape from selected customer
+      if (keyEvent.which === 27) {
+        $scope.selected = null;
+        $scope.customer = null;
+        $("#welcome").show();
+        $("#editForm").hide();
+        $("#newForm").hide();
+        $("#noSearchResult").hide();
+        $("#noLetterResult").hide();
+        $("#customerInformation").hide();
       }
     }
     // else if it is filtering letter, up down the full customer list
@@ -169,7 +187,6 @@ var customerApp = angular.module('customerApp',['ngRoute'])
         }
       }
       // select the customer behind
-      console.log($scope.letterMatchedCustomers);
       if (keyEvent.which === 40) {
         // no customer selected before
         if ($scope.selected === null) {
@@ -178,7 +195,8 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           $("#welcome").hide();
           $("#editForm").hide();
           $("#newForm").hide();
-          $("#noResult").hide();
+          $("#noSearchResult").hide();
+          $("#noLetterResult").hide();
           $("#customerInformation").show();
         }
         // there is a selected customer before
@@ -197,6 +215,18 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           $scope.selected = $scope.letterMatchedCustomers[current_number].id;
           $scope.customer = $scope.letterMatchedCustomers[current_number];
         }
+      }
+      // escape from selected customer
+      if (keyEvent.which === 27) {
+        $scope.letterSearchFlag = false;
+        $scope.selected = null;
+        $scope.customer = null;
+        $("#welcome").show();
+        $("#editForm").hide();
+        $("#newForm").hide();
+        $("#noSearchResult").hide();
+        $("#noLetterResult").hide();
+        $("#customerInformation").hide();
       }      
     }
   }
@@ -208,7 +238,8 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       $("#welcome").hide();
       $("#editForm").hide();
       $("#newForm").hide();
-      $("#noResult").hide();
+      $("#noSearchResult").hide();
+      $("#noLetterResult").hide();
       $("#customerInformation").hide();
       // highlight the first filted search result
       if($scope.filtedCustomers.length > 0) {
@@ -219,13 +250,19 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       }
       // no search result
       else {
-        $("#noResult").show();
+        $("#noSearchResult").show();
         $scope.noMatchFlag = true;
       }
     }
     // if escape is input in search box
     if (keyEvent.which === 27){
       $scope.query = "";
+      $(".search_input").blur();
+      $("#noSearchResult").hide();
+      $("#noLetterResult").hide();
+      if ($scope.selected === null) {
+        $("#welcome").show();
+      }
     }
   }
 
@@ -242,7 +279,8 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     $("#customerInformation").hide();
     $("#editForm").hide();
     $("#newForm").show();
-    $("#noResult").hide();
+    $("#noSearchResult").hide();
+    $("#noLetterResult").hide();
     $scope.customerUpdate=null;
     $scope.selected = null;
   };
@@ -308,7 +346,8 @@ var customerApp = angular.module('customerApp',['ngRoute'])
         // close new page, open info page
         $("#editForm").hide();
         $("#newForm").hide();
-        $("#noResult").hide();
+        $("#noSearchResult").hide();
+        $("#noLetterResult").hide();
         $("#customerInformation").show();
       });
   };
@@ -366,7 +405,8 @@ var customerApp = angular.module('customerApp',['ngRoute'])
         // close edit page, open info page
         $("#editForm").hide();
         $("#newForm").hide();
-        $("#noResult").hide();
+        $("#noSearchResult").hide();
+        $("#noLetterResult").hide();
         $("#customerInformation").show();
       });
       

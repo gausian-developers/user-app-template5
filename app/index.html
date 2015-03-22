@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
-<body ng-controller="CustomerListCtrl" id="CustomerCtrl" ng-keydown="upDown($event)">
+<body ng-controller="CustomerListCtrl" id="CustomerCtrl" ng-keydown="upDown_escape($event)">
 <div class="whole_container">
 
   <div class="Top_bar">
@@ -57,7 +57,7 @@
   <div class="list_container">
     <!-- show this only when search box is input -->
     <div class="search_result" ng-show="query !=''" hide>
-      Search Results
+      Search Results:
     </div>
     <!-- hide regular list when letter search starts -->
     <div ng-repeat="customer in (filtedCustomers = (customers | filter:query | orderBy:'last'))" 
@@ -69,7 +69,10 @@
     </div>
     <!-- show letter search results -->
     <div class="search_result" ng-show="letterSearchFlag == true && noMatchFlag == false" hide>
-      Name Filtered Results
+      Initials including "{{current_letter}}":
+    </div>
+    <div class="search_result" ng-show="letterSearchFlag == true && noMatchFlag == true" hide>
+      No result of "{{current_letter}}"
     </div>
     <div ng-repeat="customer in letterMatchedCustomers | orderBy:'last'" ng-show="letterSearchFlag == true" hide>
       <div class="list_customers" ng-click="showInfo(customer)" ng-class="{list_selected: customer.id == selected}">
@@ -80,18 +83,50 @@
   </div>
 
   <!-- WELCOME PAGE -->
-  <div id="welcome">
+  <div id="welcome" class="fadeIn fadeIn-20ms fadeIn-Delay-20ms">
     <div class="welcome_title">Welcome to Customers</div>
-    <div class="welcome_quote">
-      Get closer than ever to your customers. So close that you tell them what they need well before they realize it themselves. <span style="font-style:italic;">- Steve Jobs</span>
+    <div class="welcome_quote" ng-show="welcome_number == 1" hide>
+      Get closer than ever to your customers. So close that you tell them what they need well before they realize it themselves. 
+      <span style="font-style:italic;">- Steve Jobs</span>
+    </div>
+    <div class="welcome_quote" ng-show="welcome_number == 2" hide>
+      The goal as a company is to have customer service that is not just the best but legendary. 
+      <span style="font-style:italic;">- Sam Walton</span>
+    </div>
+    <div class="welcome_quote" ng-show="welcome_number == 3" hide>
+      Your most unhappy customers are your greatest source of learning. 
+      <span style="font-style:italic;">- Bill Gates</span>
+    </div>
+    <div class="welcome_quote" ng-show="welcome_number == 4" hide>
+      The customer experience is the next competitive battleground. 
+      <span style="font-style:italic;">- Jerry Gregoire</span>
+    </div>
+    <div class="welcome_quote" ng-show="welcome_number == 5" hide>
+      He profits most who serves best. 
+      <span style="font-style:italic;">- Arthur F. Sheldon</span>
+    </div>
+    <div class="welcome_quote" ng-show="welcome_number == 6" hide>
+      Customer service is not a department, it’s everyone’s job. 
+      <span style="font-style:italic;">- Anonymous</span>
+    </div>
+    <div class="welcome_quote" ng-show="welcome_number == 7" hide>
+      Only the future great companies take customers to.
+      <span style="font-style:italic;">- GAUSIAN</span>
     </div>
   </div>
 
   <!-- NO SEARCH RESULT -->
-  <div class="detail_container fadeIn fadeIn-20ms" hidden id="noResult">
-    <div class="detail_name">
-      No matching result
-    </div>
+  <div class="detail_container fadeIn fadeIn-20ms" hidden id="noSearchResult">
+    <div class="detail_name">No matching customer</div>
+    <div class="decoration_seperator"></div>
+    <div class="details">Can not find any matching infomation.</div>
+  </div>
+
+  <!-- NO LETTER RESULT -->
+  <div class="detail_container fadeIn fadeIn-20ms" hidden id="noLetterResult">
+    <div class="detail_name">No result of {{current_letter}}</div>
+    <div class="decoration_seperator"></div>
+    <div class="details">Can not find any customer with initials of letter "{{current_letter}}".</div>
   </div>
 
   <!-- DETAIL PAGE -->
