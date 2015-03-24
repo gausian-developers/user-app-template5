@@ -29,7 +29,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     // console.log('done');
     // console.log(data.response);
     $scope.customers = angular.fromJson(data.response);
-    console.log($scope.customers);
+    // console.log($scope.customers);
     for(var i=0; i<$scope.customers.length; i++){
       var customer = $scope.customers[i];
       if(customer.id === $scope.userId){
@@ -362,7 +362,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           // console.log('done');
           // console.log(data.response);
           $scope.customers = angular.fromJson(data.response);
-          console.log($scope.customers);
+          // console.log($scope.customers);
           for(var i=0; i<$scope.customers.length; i++){
             var customer = $scope.customers[i];
             if(customer.id === $scope.userId){
@@ -421,7 +421,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           // console.log('done');
           // console.log(data.response);
           $scope.customers = angular.fromJson(data.response);
-          console.log($scope.customers);
+          // console.log($scope.customers);
           for(var i=0; i<$scope.customers.length; i++){
             var customer = $scope.customers[i];
             if(customer.id === $scope.userId){
@@ -494,7 +494,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           work_phone: "876-564-0937"
         }
       };
-    console.log(payload);
+    // console.log(payload);
     var targetUrl = (window.location != window.parent.location) ? document.referrer: document.location;
     parent.postMessage(payload, targetUrl);
   };
@@ -524,7 +524,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       var targetApp = data.targetApp;
       $scope.apps.push(targetApp);
       //TBD: add icon to app list
-      console.log(targetApp);
+      //console.log(targetApp);
     }
   };
 })
