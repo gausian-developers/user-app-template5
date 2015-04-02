@@ -251,7 +251,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           $("#customerInformation").hide();
           $(".search_result").hide();
         }
-      }   
+      }
     }
   }
 
@@ -324,9 +324,9 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         data: $.param({
-          user_app_id:'app_id', 
+          user_app_id:'app_id',
           service_app_name:'Customer',
-          request_string: 
+          request_string:
           'add first='+$scope.customerUpdate.first+
           ', last='+$scope.customerUpdate.last+
           ', email='+$scope.customerUpdate.email+
@@ -388,9 +388,9 @@ var customerApp = angular.module('customerApp',['ngRoute'])
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         data: $.param({
-          user_app_id:'app_id', 
+          user_app_id:'app_id',
           service_app_name:'Customer',
-          request_string: 
+          request_string:
           'update email='+$scope.customerUpdate.email+
           ', company_name='+$scope.customerUpdate.company_name+
           ', department_name='+$scope.customerUpdate.department_name+
@@ -437,7 +437,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
         $("#customerInformation").show();
         $scope.editing = false;
       });
-      
+
   };
 
   $scope.deleteCustomer = function() {
@@ -502,7 +502,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
   $scope.addLink = function() {
     var payload = {
       op: 'addLink',
-      originAppId: 'customerApp'
+      originAppId: 'Customers'
     };
     var targetUrl = (window.location != window.parent.location) ? document.referrer: document.location;
     parent.postMessage(payload, targetUrl);
