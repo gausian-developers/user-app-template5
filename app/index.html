@@ -392,9 +392,7 @@
     <div ng-repeat="app in apps | filter:query | orderBy:orderProp">
       <div class="APP_hyperlink_onelink" ng-click="openCustomer(customer)">
         <div class="APP_hyperlink_app_edge"></div>
-        <div class="APP_hyperlink_app_image">
-          <img ng-src="{{app.icon}}" />
-        </div>
+        <div class="APP_hyperlink_app_image" ng-style="{'background-image': 'url(' + {{app.icon}} + ')'}></div>
         <div class="APP_hyperlink_app_name"> {{app.name}}</div>
       </div>
     </div>
