@@ -522,7 +522,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
       }
     } else if (data.op === 'selectLink') {
       var targetApp = data.targetApp;
-      $scope.apps.push(targetApp);
+      $scope.apps = targetApp;
       //TBD: add icon to app list
       //console.log(targetApp);
     }

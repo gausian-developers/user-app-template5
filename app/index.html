@@ -18,7 +18,7 @@
 
   <div class="Top_bar">
     <button class="add_customer" id="addCustomer" ng-click="newForm()">+</button>
-    <input class="search_input" placeholder="Search Customer" ng-model="query" 
+    <input class="search_input" placeholder="Search Customer" ng-model="query"
       ng-keydown="selectSearch($event)" ng-change="changeSearch()"></input>
   </div>
 
@@ -60,7 +60,7 @@
       Search Results:
     </div>
     <!-- hide regular list when letter search starts -->
-    <div ng-repeat="customer in (filtedCustomers = (customers | filter:query | orderBy:'last'))" 
+    <div ng-repeat="customer in (filtedCustomers = (customers | filter:query | orderBy:'last'))"
     ng-hide="letterSearchFlag == true">
       <div class="list_customers" ng-click="showInfo(customer)" ng-class="{list_selected: customer.id == selected}">
         <div class="list_customers_name" ng-bind-template="{{customer.first}} {{customer.last}}"></div>
@@ -86,27 +86,27 @@
   <div id="welcome" class="fadeIn fadeIn-20ms fadeIn-Delay-20ms">
     <div class="welcome_title">Welcome to Customers</div>
     <div class="welcome_quote" ng-show="welcome_number == 1" hide>
-      Get closer than ever to your customers. So close that you tell them what they need well before they realize it themselves. 
+      Get closer than ever to your customers. So close that you tell them what they need well before they realize it themselves.
       <span style="font-style:italic;">- Steve Jobs</span>
     </div>
     <div class="welcome_quote" ng-show="welcome_number == 2" hide>
-      The goal as a company is to have customer service that is not just the best but legendary. 
+      The goal as a company is to have customer service that is not just the best but legendary.
       <span style="font-style:italic;">- Sam Walton</span>
     </div>
     <div class="welcome_quote" ng-show="welcome_number == 3" hide>
-      Your most unhappy customers are your greatest source of learning. 
+      Your most unhappy customers are your greatest source of learning.
       <span style="font-style:italic;">- Bill Gates</span>
     </div>
     <div class="welcome_quote" ng-show="welcome_number == 4" hide>
-      The customer experience is the next competitive battleground. 
+      The customer experience is the next competitive battleground.
       <span style="font-style:italic;">- Jerry Gregoire</span>
     </div>
     <div class="welcome_quote" ng-show="welcome_number == 5" hide>
-      He profits most who serves best. 
+      He profits most who serves best.
       <span style="font-style:italic;">- Arthur F. Sheldon</span>
     </div>
     <div class="welcome_quote" ng-show="welcome_number == 6" hide>
-      Customer service is not a department, it’s everyone’s job. 
+      Customer service is not a department, it’s everyone’s job.
       <span style="font-style:italic;">- Anonymous</span>
     </div>
     <div class="welcome_quote" ng-show="welcome_number == 7" hide>
@@ -175,10 +175,10 @@
       </div>
     </div>
     <div class="details">
-      <img class="details_img" src="img/mail_blue.png" 
+      <img class="details_img" src="img/mail_blue.png"
       ng-show="customer.mail_address != null || customer.mail_city != null || customer.mail_state != null || customer.mail_country != null || customer.mail_zip != null"
       />
-      <img class="no_info_img" src="img/mail_gray.png" 
+      <img class="no_info_img" src="img/mail_gray.png"
       ng-show="customer.mail_address == null && customer.mail_city == null && customer.mail_state == null && customer.mail_country == null && customer.mail_zip == null"
       />
       <div class="details_content_text" ng-show="customer.mail_address != null">
@@ -198,10 +198,10 @@
       </div>
     </div>
     <div class="details">
-      <img class="details_img" src="img/ship_blue.png" 
+      <img class="details_img" src="img/ship_blue.png"
       ng-show="customer.shipment_address != null || customer.shipment_city != null || customer.shipment_state != null || customer.shipment_country != null || customer.shipment_zip != null"
       />
-      <img class="no_info_img" src="img/ship_gray.png" 
+      <img class="no_info_img" src="img/ship_gray.png"
       ng-show="customer.shipment_address == null && customer.shipment_city == null && customer.shipment_state == null && customer.shipment_country == null && customer.shipment_zip == null"
       />
       <div class="details_content_text" ng-show="customer.shipment_address != null">
@@ -260,10 +260,10 @@
       placeholder="Telephone"></input>
     </div>
     <div class="details">
-      <img class="details_img" src="img/mail_blue.png" 
+      <img class="details_img" src="img/mail_blue.png"
       ng-show="customerUpdate.mail_address != null || customerUpdate.mail_city != null || customerUpdate.mail_state != null || customerUpdate.mail_country != null || customerUpdate.mail_zip != null"
       />
-      <img class="no_info_img" src="img/mail_gray.png" 
+      <img class="no_info_img" src="img/mail_gray.png"
       ng-show="customerUpdate.mail_address == null && customerUpdate.mail_city == null && customerUpdate.mail_state == null && customerUpdate.mail_country == null && customerUpdate.mail_zip == null"
       />
       <input class="item_input" type="text" name="mail_address" ng-model="customerUpdate.mail_address" ng-initial
@@ -278,10 +278,10 @@
       placeholder="Zip"></input>
     </div>
     <div class="details">
-      <img class="details_img" src="img/ship_blue.png" 
+      <img class="details_img" src="img/ship_blue.png"
       ng-show="customerUpdate.shipment_address != null || customerUpdate.shipment_city != null || customerUpdate.shipment_state != null || customerUpdate.shipment_country != null || customerUpdate.shipment_zip != null"
       />
-      <img class="no_info_img" src="img/ship_gray.png" 
+      <img class="no_info_img" src="img/ship_gray.png"
       ng-show="customerUpdate.shipment_address == null && customerUpdate.shipment_city == null && customerUpdate.shipment_state == null && customerUpdate.shipment_country == null && customerUpdate.shipment_zip == null"
       />
       <input class="item_input" type="text" name="shipment_address" ng-model="customerUpdate.shipment_address" ng-initial
@@ -309,10 +309,10 @@
       <div class="decoration_seperator"></div>
     <!-- Details -->
     <div class="details_first">
-      <img class="details_img" src="img/mail_blue.png" 
+      <img class="details_img" src="img/mail_blue.png"
       ng-show="customerUpdate.first != null || customerUpdate.last != null || customerUpdate.company_name != null || customerUpdate.department_name != null"
       />
-      <img class="no_info_img" src="img/mail_gray.png" 
+      <img class="no_info_img" src="img/mail_gray.png"
       ng-show="customerUpdate.first == null && customerUpdate.last == null && customerUpdate.company_name == null && customerUpdate.department_name == null"
       />
       <input class="item_input" type="text" name="email" ng-model="customerUpdate.first" ng-initial
@@ -349,10 +349,10 @@
       placeholder="Telephone"></input>
     </div>
     <div class="details">
-      <img class="details_img" src="img/mail_blue.png" 
+      <img class="details_img" src="img/mail_blue.png"
       ng-show="customerUpdate.mail_address != null || customerUpdate.mail_city != null || customerUpdate.mail_state != null || customerUpdate.mail_country != null || customerUpdate.mail_zip != null"
       />
-      <img class="no_info_img" src="img/mail_gray.png" 
+      <img class="no_info_img" src="img/mail_gray.png"
       ng-show="customerUpdate.mail_address == null && customerUpdate.mail_city == null && customerUpdate.mail_state == null && customerUpdate.mail_country == null && customerUpdate.mail_zip == null"
       />
       <input class="item_input" type="text" name="mail_address" ng-model="customerUpdate.mail_address" ng-initial
@@ -367,10 +367,10 @@
       placeholder="Zip"></input>
     </div>
     <div class="details">
-      <img class="details_img" src="img/ship_blue.png" 
+      <img class="details_img" src="img/ship_blue.png"
       ng-show="customerUpdate.shipment_address != null || customerUpdate.shipment_city != null || customerUpdate.shipment_state != null || customerUpdate.shipment_country != null || customerUpdate.shipment_zip != null"
       />
-      <img class="no_info_img" src="img/ship_gray.png" 
+      <img class="no_info_img" src="img/ship_gray.png"
       ng-show="customerUpdate.shipment_address == null && customerUpdate.shipment_city == null && customerUpdate.shipment_state == null && customerUpdate.shipment_country == null && customerUpdate.shipment_zip == null"
       />
       <input class="item_input" type="text" name="shipment_address" ng-model="customerUpdate.shipment_address" ng-initial
@@ -392,7 +392,9 @@
     <div ng-repeat="app in apps | filter:query | orderBy:orderProp">
       <div class="APP_hyperlink_onelink" ng-click="openCustomer(customer)">
         <div class="APP_hyperlink_app_edge"></div>
-        <div class="APP_hyperlink_app_image"></div>
+        <div class="APP_hyperlink_app_image">
+          <img ng-src="{{app.icon}}" />
+        </div>
         <div class="APP_hyperlink_app_name"> {{app.name}}</div>
       </div>
     </div>
