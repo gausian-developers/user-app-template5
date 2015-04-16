@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="customerApp" class="no-js">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,9 @@
   <script src="js/controller.js"></script>
   <link rel="stylesheet" href="css/customer.css">
 </head>
-<body ng-controller="CustomerListCtrl" id="CustomerCtrl" ng-keydown="upDown_escape($event)">
+<body>
+<div ng-app="customerApp" >
+	<div ng-controller="CustomerListCtrl" id="CustomerCtrl" ng-keydown="upDown_escape($event)">
 <div class="__Customer__wholeContainer">
 
   <div class="__Customer__topBar">
@@ -404,6 +406,8 @@
     </div>
     <div class="__Customer__AppHyperlink" ng-click="addLink()">Direct Link</div>
   </div>
+</div>	
+</div>
 </div>
 </body>
 </html>
