@@ -21,11 +21,11 @@
 
   <div class="__Customer__topBar">
     <button class="__Customer__addCustomer" id="addCustomer" ng-click="newForm()">+</button>
-    <input class="__Customer__searchInput" placeholder="Search Customer" ng-model="query"
-      ng-keydown="selectSearch($event)" ng-change="changeSearch()"></input>
+    <input class="__Customer__searchInput" placeholder="Search Customers ..." ng-model="query" ng-keydown="selectSearch($event)" ng-change="changeSearch()"></input>
+    <div class="__Customer__SearchBn">Search</div>
   </div>
 
-  <div class="__Customer__leftContainer">
+  <div class="__Customer__leftContainer">1
     <div class="__Customer__leftBar">
       <div class="__Customer__navigationLetter" ng-click="searchLetter('A')">A</div>
       <div class="__Customer__navigationLetter" ng-click="searchLetter('B')">B</div>
@@ -113,7 +113,7 @@
       <span style="font-style:italic;">- Anonymous</span>
     </div>
     <div class="__Customer__welcomeQuote" ng-show="welcome_number == 7" hide>
-      Only the future great companies take customers to.
+      Take your customers to the future.
       <span style="font-style:italic;">- GAUSIAN</span>
     </div>
   </div>
