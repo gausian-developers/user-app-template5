@@ -488,16 +488,31 @@ left: 0px;
 margin-left: 0;
 margin-right: 0;
 min-height: 76px;
-width: 54px;
+width: 92px;
 background-color: transparent;
 margin-top: 5px;
+-webkit-transition: 0.2s ease-in-out;
+-moz-transition: 0.2s ease-in-out;
+-o-transition: 0.2s ease-in-out;
+transition: 0.2s ease-in-out;
+-ms-transform-origin: 50% 50%;
+-webkit-transform-origin: 50% 50%;
+transform-origin: 50% 50%;
+}
+.__Customer__AppHyperlinkOnelink:hover {
+cursor: pointer;
+-webkit-transform: rotate(8deg);
+-moz-transform: rotate(8deg);
+-o-transform: rotate(8deg);
+-ms-transform: rotate(8deg);
+transform: rotate(8deg);
 }
 .__Customer__AppHyperlinkAppEdge {
 position: absolute;
-float: right;
-right: 0px;
+float: left;
+left: 21px;
 margin-top: 6px;
-margin-right: -18px;
+margin-right: 0px;
 width: 50px;
 height: 53px;
 background: rgb(0, 0, 0);
@@ -507,10 +522,10 @@ box-shadow: 0 0px 6px black;
 .__Customer__AppHyperlinkAppImage {
 position: absolute;
 width: 48px;
-float: right;
-right: -17px;
+/* float: right; */
+left: -20px;
 height: 48px;
-background: rgb(162, 162, 162);
+background: rgb(51, 176, 240);
 border-radius: 11px;
 margin-top: 6px;
 margin-left: 42px;
@@ -522,11 +537,10 @@ text-align: center;
 color: rgb(246, 246, 246);
 background-size: 48px 48px;
 background-repeat: no-repeat;
-}
-.__Customer__AppHyperlinkAppImage:hover {
-background: orange;
-cursor: pointer;
-color: white;
+-webkit-transition: 0.2s ease-in-out;
+-moz-transition: 0.2s ease-in-out;
+-o-transition: 0.2s ease-in-out;
+transition: 0.2s ease-in-out;
 }
 .__Customer__AppHyperlinkAppName {
 position: absolute;
@@ -534,7 +548,7 @@ margin-top: 62px;
 font-family: arial;
 color: rgb(216, 216, 216);
 font-size: 13px;
-width: 91px;
+width: 92px;
 text-align: center;
 background: transparent;
 font-weight: bold;
