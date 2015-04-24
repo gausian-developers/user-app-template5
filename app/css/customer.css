@@ -501,11 +501,11 @@ transform-origin: 50% 50%;
 }
 .__Customer__AppHyperlinkOnelink:hover {
 cursor: pointer;
--webkit-transform: rotate(8deg);
--moz-transform: rotate(8deg);
--o-transform: rotate(8deg);
--ms-transform: rotate(8deg);
-transform: rotate(8deg);
+-webkit-transform: scale(1.1) rotate(8deg);
+-moz-transform: scale(1.1) rotate(8deg);
+-o-transform: scale(1.1) rotate(8deg);
+-ms-transform: scale(1.1) rotate(8deg);
+transform: scale(1.1) rotate(8deg);
 }
 .__Customer__AppHyperlinkAppEdge {
 position: absolute;
