@@ -1,0 +1,10 @@
+{
+  "Path" : "http://localhost:8300/downloadable_app/",
+  "CSS" : [
+    "css/customer.css"
+  ],
+  "Controller" : {
+    "name" : "CustomerController",
+    "src" : "js/Customers.js"
+  }
+}
