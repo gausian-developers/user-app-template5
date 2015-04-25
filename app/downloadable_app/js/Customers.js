@@ -6,6 +6,7 @@ var CustomerDataStore = GSModule.createDataStore({
 	searchedKey : '',
 	indexKey : '',
 	selectedCustomer : {},
+	apps : [],
 	
 	getSearchedResults : function(component) {
 		var str = this.get('searchedKey', component);
@@ -77,13 +78,19 @@ var CustomerController = GSModule.create({
 				<div class="__Customer__leftContainer">\
 					<AlphabetIndexBar class="__Customer__leftBar" onClickIndex={this._onClickIndex}></AlphabetIndexBar>\
 				</div>\
-				<CustomerLeftList class="__Customer__listContainer" path="js/customerleftlist.js" onItemClicked={this._onCustomerItemClicked}></CustomerLeftList>\
+				<CustomerLeftList class="__Customer__listContainer" path="js/CustomerLeftList.js" onItemClicked={this._onCustomerItemClicked}></CustomerLeftList>\
+				<WelcomePage class="__Customer__welcome" path="js/WelcomePage.js"></WelcomePage>\
+				<CustomerHyperlinkList path="js/CustomerHyperlinkList.js"></CustomerHyperlinkList>\
 			</div>\
 		');
 	},
 	
 	receiveMessage : function(data) {
-		console.log('receiveMessage', data);
+		if (data.op === 'selectLink') {
+	    	CustomerDataStore.set({
+				'apps' : data.targetApp,
+			});
+	    }
 	},
 	
 	onLoading : function() {

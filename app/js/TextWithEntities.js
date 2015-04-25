@@ -37,6 +37,8 @@ function TextWithEntities(str) {
 			} else {
 				current = current.concat(str[i]);
 			}
+		} else if (str[i] === '\\') {
+			escape = true;
 		} else if (str[i] === '{') {
 			if (current) {
 				result.push(_getEntity(current, is_var));

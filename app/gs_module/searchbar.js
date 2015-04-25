@@ -17,6 +17,7 @@ var searchbar = GSModule.create({
 			<div>\
 				<button class="__Customer__addCustomer">+</button>\
 				<input class="__Customer__searchInput" placeholder="Search Customer" onkeyup={this._onKeyUp}></input>\
+				<div class="__Customer__SearchBn">Search</div>\
 			</div>\
 		');
 	}

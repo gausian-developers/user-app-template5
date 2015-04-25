@@ -21,6 +21,7 @@ var GSModuleRender = {
 		'a' : true,
 		'button' : true,
 		'input' : true,
+		'span' : true,
 	},
 	
 	_installedComponents : {},
@@ -199,7 +200,7 @@ var GSModuleRender = {
 					var path = '';
 					if (props.path) {
 						path = component._windowController._installPath + props.path;
-						props.path = null;
+						delete props.path;
 					}
 					this.installComponent(dom.localName, path);
 				}
@@ -225,7 +226,7 @@ var GSModuleRender = {
 		if (doc.childNodes.length > 1) {
 			throw dom.localName.concat(' has more than one components');
 		}
-		
+
 		var row_dom = doc.childNodes[0];
 		dom.parentNode.insertBefore(row_dom, dom);
 		component.setDOM(row_dom);
