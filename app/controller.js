@@ -3,6 +3,7 @@
 
 var customerApp = angular.module('customerApp',['ngRoute'])
 
+
   .controller('CustomerListCtrl', function($scope, $http, $route, $routeParams) {
 
   $scope.data;
@@ -509,6 +510,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
   };
 
   $scope.processMessage = function(data){
+    console.log(data);
     if(data.op === 'bootstrap'){
       var host = data.host;
     } else if (data.op === 'openApp'){
@@ -526,6 +528,7 @@ var customerApp = angular.module('customerApp',['ngRoute'])
     }
   };
 })
+
 .config(function ($routeProvider){
   $routeProvider.
   when('/open/:userId',{
@@ -533,14 +536,9 @@ var customerApp = angular.module('customerApp',['ngRoute'])
   })
 });
 
-angular.element(document.getElementById('CustomerCtrl')).ready(function() {
-  angular.bootstrap(document.getElementById('CustomerCtrl'), ['ngRoute', 'customerApp']);
-  iframeProxy.setLoaded();
-});
 
-var cutomerController = {
-	receiveMessage : function(event) {
-	  var scope = angular.element(document.getElementById('CustomerCtrl')).scope();
-	  scope.$apply(scope.processMessage(event));
-	}
-};
+function receiveMessage(event) {
+  var scope = angular.element(document.getElementById('CustomerCtrl')).scope();
+  scope.$apply(scope.processMessage(event.data));
+}
+window.addEventListener("message", receiveMessage, false);
