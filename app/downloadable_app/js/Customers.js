@@ -79,7 +79,7 @@ var CustomerController = GSModule.create({
 					<AlphabetIndexBar class="__Customer__leftBar" onClickIndex={this._onClickIndex}></AlphabetIndexBar>\
 				</div>\
 				<CustomerLeftList class="__Customer__listContainer" path="js/CustomerLeftList.js" onItemClicked={this._onCustomerItemClicked}></CustomerLeftList>\
-				<WelcomePage class="__Customer__welcome" path="js/WelcomePage.js"></WelcomePage>\
+				<CustomerCenterContent path="js/CustomerCenterContent.js"></CustomerCenterContent>\
 				<CustomerHyperlinkList path="js/CustomerHyperlinkList.js"></CustomerHyperlinkList>\
 			</div>\
 		');

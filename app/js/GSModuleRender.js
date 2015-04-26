@@ -22,6 +22,7 @@ var GSModuleRender = {
 		'button' : true,
 		'input' : true,
 		'span' : true,
+		'img' : true,
 	},
 	
 	_installedComponents : {},
