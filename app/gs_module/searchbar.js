@@ -15,7 +15,7 @@ var searchbar = GSModule.create({
 	
 	_onClick : function(event) {
 		if (this._props.onaddclicked) {
-			this._props.onaddclicked(event);
+			this._props.onaddclicked();
 		}
 	},
 	

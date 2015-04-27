@@ -23,6 +23,7 @@ var userdetails = GSModule.create({
 	      			{this._props.user.company_name}\
 	    		</div>\
 				<UserEmailInput class="__Customer__details" user={this._props.user}></UserEmailInput>\
+				<UserWebsiteInput class="__Customer__details" user={this._props.user}></UserWebsiteInput>\
 	    		<UserMobilePhoneInput class="__Customer__details" user={this._props.user}></UserMobilePhoneInput>\
 	    		<UserTelephoneInput class="__Customer__details" user={this._props.user}></UserTelephoneInput>\
 	    		<UserAddressInput class="__Customer__details" user={this._props.user}></UserAddressInput>\

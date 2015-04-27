@@ -15,12 +15,13 @@ var CustomerDataStore = GSModule.createDataStore({
 		if (!str) {
 			return [];
 		}
+		str = str.toLowerCase();
 		
 	    var matches = [];
 		var customers = this.get('customers', component);
 	    for(var i=0; i<customers.length; i++){
 	      var customer = customers[i];
-	      if(customer.first.indexOf(str) > -1 || customer.last.indexOf(str) > -1) {
+	      if(customer.first.toLowerCase().indexOf(str) > -1 || customer.last.toLowerCase().indexOf(str) > -1) {
 	        matches.push(customer);
 	      }
 	    }
@@ -28,13 +29,13 @@ var CustomerDataStore = GSModule.createDataStore({
 	},
 	
 	getIndexResults : function(component) {
-		var str = this.get('indexKey', component);
+		var str = this.get('indexKey', component).toLowerCase();
 		
 	    var matches = [];
 		var customers = this.get('customers', component);
 	    for(var i=0; i<customers.length; i++){
 	      var customer = customers[i];
-	      if(customer.first[0] === str || customer.last[0] === str) {
+	      if(customer.first[0].toLowerCase() === str || customer.last[0].toLowerCase() === str) {
 	        matches.push(customer);
 	      }
 	    }
@@ -69,11 +70,12 @@ var CustomerController = GSModule.create({
 	_onCustomerItemClicked : function(customer) {
 		CustomerDataStore.set({
 			'selectedCustomer' : customer,
-			'displayMode' : 'display'
+			'displayMode' : 'display',
+			'listMode' : 'list'
 		});
 	},
 	
-	_onAddClicked : function(event) {
+	_onAddClicked : function() {
 		CustomerDataStore.set({'displayMode' : 'create'});
 	},
 	
