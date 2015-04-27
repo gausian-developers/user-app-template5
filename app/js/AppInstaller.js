@@ -1,7 +1,7 @@
 'use strict';
 
 $.get(
-	'http://localhost:8300/downloadable_app/package_customer.json',
+	'http://gausian-developers.github.io/user-app-template5/app/downloadable_app/package_customer.json',
 	function(data) {
 		var obj = jQuery.parseJSON(data);
 		var path = '';
