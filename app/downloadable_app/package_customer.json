@@ -1,5 +1,5 @@
 {
-  "Path" : "http://localhost:8300/downloadable_app/",
+  "Path" : "http://gausian-developers.github.io/user-app-template5/app/downloadable_app/",
   "CSS" : [
     "css/customer.css"
   ],
