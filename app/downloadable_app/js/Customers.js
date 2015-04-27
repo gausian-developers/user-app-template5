@@ -45,12 +45,8 @@ var CustomerDataStore = GSModule.createDataStore({
 
 var CustomerController = GSModule.create({
 	_req : {
-	    method: 'POST',
 	    url: 'http://asa.gausian.com',
-	    headers: {
-	      'Content-Type': 'application/x-www-form-urlencoded'
-	    },
-	    data: {user_app_id:'app_id', service_app_name:'Customer', request_string: "get"}
+	    data: {user_app_id:'app_id', service_app_name:'Customer', request_string: "get"},
 	},
 	
 	_onSearch : function(str) {
