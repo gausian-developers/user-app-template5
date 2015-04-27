@@ -73,10 +73,14 @@ var CustomerController = GSModule.create({
 		});
 	},
 	
+	_onAddClicked : function(event) {
+		CustomerDataStore.set({'displayMode' : 'create'});
+	},
+	
 	render : function() {
 		return ('\
 			<div class="__Customer__wholeContainer">\
-				<SearchBar class="__Customer__topBar" onSearch={this._onSearch}></SearchBar>\
+				<SearchBar class="__Customer__topBar" onSearch={this._onSearch} onAddClicked={this._onAddClicked}></SearchBar>\
 				<div class="__Customer__leftContainer">\
 					<AlphabetIndexBar class="__Customer__leftBar" onClickIndex={this._onClickIndex}></AlphabetIndexBar>\
 				</div>\

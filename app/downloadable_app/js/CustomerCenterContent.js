@@ -10,8 +10,10 @@ var customercentercontent = GSModule.create({
 	
 	render : function() {
 		this._selectedCustomer = CustomerDataStore.get('selectedCustomer', this);
-		if (!jQuery.isEmptyObject(this._selectedCustomer)) {
-			var mode = CustomerDataStore.get('displayMode', this);
+		var mode = CustomerDataStore.get('displayMode', this);
+		if (mode === 'create') {
+			return ('<UserDetailsCreate></UserDetailsCreate>');
+		} else if (!jQuery.isEmptyObject(this._selectedCustomer)) {
 			if (mode === 'display') {
 				return ('<UserDetails user={this._selectedCustomer} oneditclick={this._onEditClick}></UserDetails>');
 			} else {

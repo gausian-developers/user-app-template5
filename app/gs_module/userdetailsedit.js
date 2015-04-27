@@ -10,9 +10,7 @@ var userdetailsedit = GSModule.create({
 		return ('\
 	  		<div class="__Customer__detailContainer">\
 				<form class="__Customer__infoForm">\
-	    			<div class="__Customer__detailName">\
-	      				{this._props.user.first} {this._props.user.last}\
-	    			</div>\
+	    			<UserNameInput class="__Customer__detailName" user={this._props.user}></UserNameInput>\
 					<div class="__Customer__saveCustomer" type="button">Save</div>\
 					<div class="__Customer__deleteCustomer" type="button">Delete this customer</div>\
 	    			<div class="__Customer__decorationSeperator"></div>\

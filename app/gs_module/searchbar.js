@@ -4,6 +4,7 @@ var searchbar = GSModule.create({
 	
 	_propsDef : {
 		"onsearch" : null,
+		'onaddclicked' : null
 	},
 	
 	_onKeyUp : function(event) {
@@ -12,10 +13,16 @@ var searchbar = GSModule.create({
 		}
 	},
 	
+	_onClick : function(event) {
+		if (this._props.onaddclicked) {
+			this._props.onaddclicked(event);
+		}
+	},
+	
 	render : function() {
 		return ('\
 			<div>\
-				<button class="__Customer__addCustomer">+</button>\
+				<button class="__Customer__addCustomer" onclick={this._onClick}>+</button>\
 				<input class="__Customer__searchInput" placeholder="Search Customer" onkeyup={this._onKeyUp}></input>\
 				<div class="__Customer__SearchBn">Search</div>\
 			</div>\
