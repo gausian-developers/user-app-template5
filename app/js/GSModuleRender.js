@@ -23,6 +23,7 @@ var GSModuleRender = {
 		'input' : true,
 		'span' : true,
 		'img' : true,
+		'form' : true,
 	},
 	
 	_installedComponents : {},
@@ -172,16 +173,21 @@ var GSModuleRender = {
 					props[key] = component._props[key];
 				}
 				var parent = document.createElement("div");
-				dom.parentNode.insertBefore(parent, dom);
-				dom.parentNode.removeChild(dom);
-				
+				dom.parentNode.replaceChild(parent, dom);
 				parent.appendChild(dom);
+				
 				component.setDOM(parent);
 			}
 			
 			var component_status = this._installedComponents[dom.localName];
 			if (component_status === 'loaded') {
 				var sub_component = new window[dom.localName](dom, props, component._domLevel + 1, component._windowController);
+				if (sub_component._props.getinstance) {
+					sub_component._props.getinstance(sub_component);
+				}
+				if (sub_component.onMounting) {
+					sub_component.onMounting();
+				}
 				sub_component.renderComponent();
 				if (exist_dom) {
 					exist_dom.parentNode.removeChild(exist_dom);
@@ -213,8 +219,8 @@ var GSModuleRender = {
 		if (!dom) {
 			return;
 		}
-		if (component.onBeforeMounting) {
-			component.onBeforeMounting();
+		if (component.onBeforeRendering) {
+			component.onBeforeRendering();
 		}
 
 		var doc = document.createElement("div");
@@ -234,8 +240,8 @@ var GSModuleRender = {
 		
 		this._renderDom(row_dom, dom, component, true);
 		
-		if (component.onDidMounted) {
-			component.onDidMounted();
+		if (component.onDidRendered) {
+			component.onDidRendered();
 		}
 	},
 	
@@ -252,6 +258,12 @@ var GSModuleRender = {
 						this._componentRequestList[str][i].level,
 						this._componentRequestList[str][i].controller
 					);
+					if (component._props.getinstance) {
+						component._props.getinstance(component);
+					}
+					if (component.onMounting) {
+						component.onMounting();
+					}
 					component.renderComponent();
 					if (this._componentRequestList[str][i].exist_dom) {
 						this._componentRequestList[str][i].exist_dom.parentNode.removeChild(

@@ -6,6 +6,7 @@ var CustomerDataStore = GSModule.createDataStore({
 	searchedKey : '',
 	indexKey : '',
 	selectedCustomer : {},
+	displayMode : 'display',
 	apps : [],
 	
 	getSearchedResults : function(component) {
@@ -68,6 +69,7 @@ var CustomerController = GSModule.create({
 	_onCustomerItemClicked : function(customer) {
 		CustomerDataStore.set({
 			'selectedCustomer' : customer,
+			'displayMode' : 'display'
 		});
 	},
 	
