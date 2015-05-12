@@ -5,7 +5,7 @@ var customercentercontent = GSModule.create({
 	_selectedCustomer : {},
 	
 	_onEditClick : function() {
-		CustomerDataStore.set({'displayMode' : 'edit'});
+		CustomerDataStore.set({'displayMode' : 'edit'}, this);
 	},
 	
 	_onCreateClick : function(form) {
@@ -88,7 +88,7 @@ var customercentercontent = GSModule.create({
 					'customers' : JSON.parse(load_data.response),
 					'selectedCustomer' : JSON.parse(add_data.response)[0],
 					'displayMode' : 'display',
-				});
+				}, this);
         	});
       	});
 	},
@@ -113,7 +113,7 @@ var customercentercontent = GSModule.create({
 					'customers' : JSON.parse(load_data.response),
 					'selectedCustomer' : {},
 					'displayMode' : 'none',
-				});
+				}, this);
         	});
 	    });
 	},

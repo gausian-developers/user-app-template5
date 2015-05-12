@@ -1,7 +1,7 @@
 'use strict';
 
 $.get(
-	'http://localhost:8300/downloadable_app/package_customer.json',
+	'downloadable_app/package_customer.json',
 	function(data) {
 		var obj = jQuery.parseJSON(data);
 		var path = '';

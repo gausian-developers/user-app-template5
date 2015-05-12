@@ -57,14 +57,14 @@ var CustomerController = GSModule.create({
 		CustomerDataStore.set({
 			'searchedKey' : str,
 			'listMode' : 'search'
-		});
+		}, this);
 	},
 	
 	_onClickIndex : function(str) {
 		CustomerDataStore.set({
 			'indexKey' : str,
 			'listMode' : 'index'
-		});
+		}, this);
 	},
 	
 	_onCustomerItemClicked : function(customer) {
@@ -72,11 +72,11 @@ var CustomerController = GSModule.create({
 			'selectedCustomer' : customer,
 			'displayMode' : 'display',
 			'listMode' : 'list'
-		});
+		}, this);
 	},
 	
 	_onAddClicked : function() {
-		CustomerDataStore.set({'displayMode' : 'create'});
+		CustomerDataStore.set({'displayMode' : 'create'}, this);
 	},
 	
 	render : function() {
@@ -97,7 +97,7 @@ var CustomerController = GSModule.create({
 		if (data.op === 'selectLink') {
 	    	CustomerDataStore.set({
 				'apps' : data.targetApp,
-			});
+			}, this);
 	    }
 	},
 	
@@ -105,7 +105,7 @@ var CustomerController = GSModule.create({
 		$.post(this._req.url, this._req.data).done(function(data) {
 			var customers = JSON.parse(data.response);
 			$(this._dom).ready(function() {
-				CustomerDataStore.set({'customers' : customers});
+				CustomerDataStore.set({'customers' : customers}, this);
 			}.bind(this));
 		}.bind(this));
 	}

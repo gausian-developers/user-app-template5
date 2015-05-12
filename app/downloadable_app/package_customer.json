@@ -1,5 +1,5 @@
 {
-  "Path" : "http://localhost:8300/downloadable_app/",
+  "Path" : "downloadable_app/",
   "CSS" : [
     "css/customer.css"
   ],

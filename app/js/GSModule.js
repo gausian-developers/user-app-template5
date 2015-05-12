@@ -46,40 +46,58 @@ var GSModule = {
 		var module = {
 			_updateHandler : {},
 			_data : {},
+			_dataDef : {},
 			
 			get : function(name, component) {
-				if (!this._updateHandler[name]) {
-					this._updateHandler[name] = [];
+				var controller = component._windowController;
+				if (!this._updateHandler[controller]) {
+					this._updateHandler[controller] = [];
+				}
+				if (!this._updateHandler[controller][name]) {
+					this._updateHandler[controller][name] = [];
 				}
 				var exist = false;
-				for (var key in this._updateHandler[name]) {
-					if (!this._updateHandler[name].hasOwnProperty(key)) {
+				for (var key in this._updateHandler[controller][name]) {
+					if (!this._updateHandler[controller][name].hasOwnProperty(key)) {
 						continue;
 					}
-					if (this._updateHandler[name][key] === component) {
+					if (this._updateHandler[controller][name][key] === component) {
 						exist = true;
 						break;
 					}
 				}
 				if (!exist) {
-					this._updateHandler[name].push(component);
+					this._updateHandler[controller][name].push(component);
 				}
-				return this._data[name];
+				if (!this._data[controller] || 
+				    typeof(this._data[controller][name]) == 'undefined') {
+				  return this._dataDef[name];
+				}
+				return this._data[controller][name];
 			},
-			set : function(nameValues) {
+			
+			set : function(nameValues, component) {
+				var controller = component._windowController;
 				var updates = [];
 				for (var key in nameValues) {
 					if (nameValues.hasOwnProperty(key)) {
-						this._data[key] = nameValues[key];
-
-						if (this._updateHandler[key]) {
-							for (var hKey in this._updateHandler[key]) {
-								if (!this._updateHandler[key].hasOwnProperty(hKey)) {
+						if (!this._data[controller]) {
+							this._data[controller] = {};
+						}
+						this._data[controller][key] = nameValues[key];
+						
+						if (this._updateHandler[controller] && 
+							this._updateHandler[controller][key]) {
+							for (var hKey in this._updateHandler[controller][key]) {
+								if (!this._updateHandler[controller][key]
+										.hasOwnProperty(hKey)) {
 									continue;
 								}
-								this._updateHandler[key][hKey].renderStatus = 'rendering';
+								this._updateHandler[controller][key][hKey].renderStatus
+									= 'rendering';
 								updates.push({
-									'handler' : this._updateHandler[key][hKey],
+									'handler' : 
+										this._updateHandler[controller][key][hKey],
 									'key' : key,
 									'index' : hKey
 								});
@@ -96,7 +114,8 @@ var GSModule = {
 						continue;
 					}
 					if (!component._windowController._dom.contains(component._dom)) {
-						delete this._updateHandler[updates[i].key][updates[i].index];
+						delete this._updateHandler[controller][updates[i].key]
+							[updates[i].index];
 						continue;
 					}
 					component.renderComponent();
@@ -110,7 +129,7 @@ var GSModule = {
 				if (typeof(dataStore[key]) === 'function') {
 					module[key] = dataStore[key];
 				} else {
-					module._data[key] = dataStore[key];
+					module._dataDef[key] = dataStore[key];
 				}
 			}
 		}
