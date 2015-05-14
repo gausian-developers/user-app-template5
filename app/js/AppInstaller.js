@@ -1,8 +1,6 @@
 'use strict';
 
-$.get(
-	'downloadable_app/package_customer.json',
-	function(data) {
+var install = function(data) {
 		var obj = jQuery.parseJSON(data);
 		var path = '';
 		if (obj.Path) {
@@ -46,6 +44,14 @@ $.get(
 				});
 			});
 		}
-	},
-	"text"
-);
+	};
+install('{\
+  "Path" : "downloadable_app/",\
+  "CSS" : [\
+    "css/customer.css"\
+  ],\
+  "Controller" : {\
+    "name" : "CustomerController",\
+    "src" : "js/Customers.js"\
+  }\
+}');

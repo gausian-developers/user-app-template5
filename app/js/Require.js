@@ -34,19 +34,6 @@ function require_css(path) {
   	_cssList[path] = true;
 }
 
-function require(str) {
-	var js_suffix = '.js';
-	var css_suffix = '.css';
-	if (str.indexOf(js_suffix, str.length - js_suffix.length) !== -1) {
-		require_js(str);
-	} else if (str.indexOf(css_suffix, str.length - css_suffix.length) !== -1) {
-		require_css(str);
-	} else { // GS internal module
-		var path = 'gs_module/';
-		require_js(path.concat(str).concat('.js'));
-	}
-}
-
 function require_module(str, callback) {
 	var path = 'gs_module/';
 	require_js(path.concat(str).concat('.js'), callback);
